@@ -1,14 +1,18 @@
 button {
-    min-width: 140px;
-    height: 50px;
+    min-width: 138px;
+    height: 48px;
     border-radius: 10px;
     border: none;
     width: 140px;
-    transition: width 0.2s ease;
     padding: 16px;
+    // transition: width 0.2s ease;
 
+    // &:hover {
+    //     width: 172px;
+    // }
 
-    &:hover {
-        width: 175px;
+    svg{
+        width: 24px;
+        height: 24px;
     }
 }

@@ -4,7 +4,23 @@ body {
     margin: 0;
 }
 
+@font-face {
+    font-family: "Nokora";
+    src: url("/assets/fonts/Nokora.ttf") format("truetype"),
+}
 
 :root {
     --background-color: rgba(53, 39, 58, 1);
+
+    --border-radius-10: 10px;
+    --border-radius-20: 20px;
+
+    --font-family-nokora: "Nokora";
+    --font-size-16: 16px;
+
+    --font-weight-700: 700;
+    --font-weight-400: 400;
+
+    --font-color-white: rgba(254, 253, 255, 1);
+    --font-color-dark-purple: rgba(34, 18, 39, 1);
 }
