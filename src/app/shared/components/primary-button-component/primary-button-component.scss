@@ -1,0 +1,14 @@
+button {
+    min-width: 140px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    width: 140px;
+    transition: width 0.2s ease;
+    padding: 16px;
+
+
+    &:hover {
+        width: 175px;
+    }
+}
