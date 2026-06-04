@@ -6,16 +6,11 @@ import { SurveryStatusComponent } from '../survery-status-component/survery-stat
 import { DeleteButtonComponent } from '../delete-button-component/delete-button-component';
 import { CheckboxComponent } from '../checkbox-component/checkbox-component';
 import { HighlightCardComponent } from '../highlight-card-component/highlight-card-component';
+import { TertiaryButtonComponent } from '../tertiary-button-component/tertiary-button-component';
 
 @Component({
   selector: 'app-home-component',
-  imports: [PrimaryButtonComponent,
-    SecondaryButtonComponent,
-    FilterButtonComponent,
-    SurveryStatusComponent,
-    DeleteButtonComponent,
-    CheckboxComponent,
-    HighlightCardComponent],
+  imports: [TertiaryButtonComponent],
   templateUrl: './home-component.html',
   styleUrl: './home-component.scss',
 })
