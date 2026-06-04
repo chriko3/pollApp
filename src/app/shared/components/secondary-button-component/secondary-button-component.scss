@@ -6,4 +6,13 @@ button {
     font-family: var(--font-family-nokora);
     font-size: var(--font-size-16);
     font-weight: var(--font-weight-700);
+    background-color: var(--background-color-light-yellow);
+    color: var(--font-color-white);
+    transition: var(--transition-smooth-and-bg-025);
+    cursor: pointer;
+
+    &:hover {
+        transition: all 0.25s ease;
+        background-color: var(--background-color-medium-yellow);
+    }
 }

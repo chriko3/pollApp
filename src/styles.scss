@@ -4,23 +4,58 @@ body {
     margin: 0;
 }
 
+* {
+    color: var(--font-color-dark-purple);
+}
+
 @font-face {
     font-family: "Nokora";
     src: url("/assets/fonts/Nokora.ttf") format("truetype"),
 }
 
+@font-face {
+    font-family: "Mulish";
+    src: url("/assets/fonts/Mulish.ttf") format("truetype"),
+}
+
 :root {
     --background-color: rgba(53, 39, 58, 1);
+    --background-color-light-yellow: rgba(254, 233, 212, 1);
+    --background-color-medium-yellow: rgba(255, 207, 161, 1);
+    --background-color-deep-yellow: rgba(255, 183, 112, 1);
+    --background-color-light-grey: rgba(250, 245, 254, 1);
+    --background-color-light-purple: rgba(244, 233, 251, 1);
 
+    --border-radius-3: 3px;
     --border-radius-10: 10px;
     --border-radius-20: 20px;
 
     --font-family-nokora: "Nokora";
-    --font-size-16: 16px;
+    --font-family-Mulish: "Mulish";
 
-    --font-weight-700: 700;
+    --font-size-14: 14px;
+    --font-size-16: 16px;
+    --font-size-18: 18px;
+    --font-size-26: 26px;
+
     --font-weight-400: 400;
+    --font-weight-600: 600;
+    --font-weight-700: 700;
 
     --font-color-white: rgba(254, 253, 255, 1);
     --font-color-dark-purple: rgba(34, 18, 39, 1);
+
+    --transition-smooth-and-bg-025: width 0.25s ease, background-color 0.25s ease;
+}
+
+.c-l-y {
+    background-color: var(--background-color-light-yellow);
+}
+
+.c-m-y {
+    background-color: var(--background-color-medium-yellow);
+}
+
+.c-d-y {
+    background-color: var(--background-color-deep-yellow);
 }
