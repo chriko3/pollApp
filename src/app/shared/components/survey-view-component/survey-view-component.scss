@@ -1,0 +1,49 @@
+button {
+    width: 513px;
+    height: 127px;
+    border-radius: var(--border-radius-5);
+    border-top-right-radius: 50px;
+    border: none;
+    background-color: rgba(217, 217, 217, 0.08);
+    transition: var(--transition-smooth-and-bg-025);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    >div {
+        width: 473px;
+        height: 100px;
+
+        >div {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+            gap: 8px;
+
+            >span {
+                font-family: var(--font-family-Mulish);
+                font-size: var(--font-size-16);
+                color: var(--background-color-medium-yellow);
+            }
+
+            >span:last-of-type {
+                font-family: var(--font-family-Mulish);
+                font-size: var(--font-size-24);
+                font-weight: var(--font-weight-500);
+                color: white;
+            } 
+        }
+        >section{
+            display:flex;
+            justify-content: end;
+        }
+        
+    }
+
+    &:hover {
+        transition: all 0.25s ease;
+        background-color: rgba(217, 217, 217, 0.16);
+    }
+}

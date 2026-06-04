@@ -28,9 +28,8 @@ div {
             >span {
                 font-size: var(--font-size-14);
             }
-
-
-            >span:last-child {
+            
+            >span:last-of-type {
                 font-size: var(--font-size-26);
             }
         }
