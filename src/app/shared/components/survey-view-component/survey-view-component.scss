@@ -1,5 +1,6 @@
 button {
-    width: 513px;
+    width: 480px;
+    max-width: 513px;
     height: 127px;
     border-radius: var(--border-radius-5);
     border-top-right-radius: 50px;
@@ -33,13 +34,15 @@ button {
                 font-size: var(--font-size-24);
                 font-weight: var(--font-weight-500);
                 color: white;
-            } 
+            }
         }
-        >section{
-            display:flex;
+
+        >section {
+            display: flex;
             justify-content: end;
+            margin-right: 20px;
         }
-        
+
     }
 
     &:hover {

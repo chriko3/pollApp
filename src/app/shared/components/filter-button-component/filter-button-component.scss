@@ -9,6 +9,7 @@ button {
     background-color: var(--background-color-light-yellow);
     color: var(--font-color-dark-purple);
     transition: var(--transition-smooth-and-bg-025);
+    margin-right: 20px;
     cursor: pointer;
 
     &:hover {
