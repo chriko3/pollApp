@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './shared/components/home-component/home-component';
 
@@ -8,6 +8,11 @@ import { HomeComponent } from './shared/components/home-component/home-component
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
+
 export class App {
   protected readonly title = signal('pollApp');
+  @HostListener('document:contextmenu', ['$event'])
+  blockRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
 }

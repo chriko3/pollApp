@@ -1,12 +1,13 @@
 input {
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
 
-  border: 1.5px solid black;
+  border: 1px solid black;
   border-radius: 3px;
 
-  background-color: white;
+  background-color: transparent;
+  transition: var(--transition-smooth-and-bg-025);
   cursor: pointer;
 
   display: inline-grid;
@@ -21,8 +22,8 @@ input:checked {
 
 input::after {
   content: "";
-  width: 5px;
-  height: 9px;
+  width: 3px;
+  height: 7px;
 
   border: solid var(--background-color);
   border-width: 0 2px 2px 0;

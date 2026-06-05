@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: './filter-button-component.html',
   styleUrl: './filter-button-component.scss',
 })
-export class FilterButtonComponent {}
+export class FilterButtonComponent {
+  isClicked = false;
+
+  changeBgColor() {
+    this.isClicked = !this.isClicked;
+  }
+}

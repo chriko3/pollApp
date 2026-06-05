@@ -8,5 +8,15 @@ button {
     font-weight: var(--font-weight-400);
     background-color: var(--background-color-light-yellow);
     color: var(--font-color-dark-purple);
+    transition: var(--transition-smooth-and-bg-025);
     cursor: pointer;
+
+    &:hover {
+        transition: all 0.25s ease;
+        background-color: var(--background-color-medium-yellow);
+    }
+
+    &.active{
+        background-color: var(--background-color-deep-yellow);
+    }
 }

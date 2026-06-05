@@ -8,6 +8,7 @@ button {
     border: none;
     border-radius: var(--border-radius-3);
     transition: var(--transition-smooth-and-bg-025);
+    cursor: pointer;
 
     &:hover {
         background-color: var(--background-color-deep-yellow);

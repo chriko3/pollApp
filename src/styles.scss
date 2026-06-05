@@ -8,6 +8,27 @@ body {
     color: var(--font-color-dark-purple);
 }
 
+button,
+div,
+span {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+img {
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+}
+
+input::selection {
+  background: var(--background-color-deep-yellow);
+  color: var(--font-color-dark-purple);
+}
+
 @font-face {
     font-family: "Nokora";
     src: url("/assets/fonts/Nokora.ttf") format("truetype"),

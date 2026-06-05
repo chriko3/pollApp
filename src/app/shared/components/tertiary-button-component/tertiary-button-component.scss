@@ -3,6 +3,7 @@ button {
     height: 40px;
     background-color: transparent;
     border: none;
+    border-radius: var(--border-radius-3);
     text-align: start;
     font-family: var(--font-family-nokora);
     font-size: var(--font-size-16);
