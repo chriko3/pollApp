@@ -1,4 +1,110 @@
 .home {
-  height: 100%;
+  height: 100;
   background-color: var(--background-color);
+  padding-top: 40px;
+  padding-left: 110px;
+  padding-right: 110px;
+  padding-bottom: 90px;
+}
+
+.infoSection {
+  width: 100%;
+  height: 400px;
+  margin-top: 90px;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.infoSection-left {
+  height: 100%;
+  width: 720px;
+
+  >p {
+    font-family: var(--font-family-NerkoOne);
+    font-size: var(--font-size-100);
+    color: var(--background-color-deep-yellow);
+    line-height: 75px;
+    margin: 0px;
+  }
+
+  >p:last-of-type {
+    font-family: var(--font-family-Mulish);
+    font-size: var(--font-size-16);
+    color: white;
+    line-height: 22px;
+    margin: 0px;
+    margin-top: 15px;
+    margin-bottom: 40px;
+  }
+}
+
+.infoSection-right {
+  height: 100%;
+  width: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yourSurveys {
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 90px;
+  height: 580px;
+}
+
+.yourSurveysHeadline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-NerkoOne);
+  font-size: var(--font-size-72);
+
+  >p {
+    margin: 0px;
+    color: var(--background-color-deep-yellow);
+  }
+
+  margin-bottom: 50px;
+}
+
+.yourSurveysInfoText {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-family: var(--font-family-Mulish);
+  font-size: var(--font-size-26);
+
+  >p {
+    color: white;
+  }
+
+  margin-bottom: 32px;
+}
+
+.yourSurveysBoxs {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+}
+
+.allSurveys {
+  background-color: green;
+  width: auto;
+  height: 500px;
+  margin-top: 40px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.allSurveysHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.allSurveysList {
+  margin-top: 40px;
 }

@@ -1,6 +1,6 @@
 button {
-    min-width: 107px;
-    max-width: 206px;
+    min-width: 110px;
+    max-width: 210px;
     height: 32px;
     background-color: transparent;
     border: none;
@@ -13,6 +13,7 @@ button {
     align-items: center;
     justify-content: space-around;
     cursor: pointer;
+    gap: 10px;
 
     >span {
         color: white;
@@ -25,4 +26,8 @@ button {
             fill: var(--background-color-deep-yellow);
         }
     }
+}
+
+.rotate180{
+    transform: rotate(180deg);
 }

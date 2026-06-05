@@ -39,6 +39,11 @@ input::selection {
     src: url("/assets/fonts/Mulish.ttf") format("truetype"),
 }
 
+@font-face {
+    font-family: "NerkoOne";
+    src: url("/assets/fonts/NerkoOne.ttf") format("truetype"),
+}
+
 :root {
     --background-color: rgba(53, 39, 58, 1);
     --background-color-light-yellow: rgba(254, 233, 212, 1);
@@ -54,12 +59,16 @@ input::selection {
 
     --font-family-nokora: "Nokora";
     --font-family-Mulish: "Mulish";
+    --font-family-NerkoOne: "NerkoOne";
 
     --font-size-14: 14px;
     --font-size-16: 16px;
     --font-size-18: 18px;
     --font-size-24: 24px;
     --font-size-26: 26px;
+    --font-size-32: 32px;
+    --font-size-72: 72px;
+    --font-size-100: 100px;
 
     --font-weight-400: 400;
     --font-weight-500: 500;
