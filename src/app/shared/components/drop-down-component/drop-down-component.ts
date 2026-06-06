@@ -26,7 +26,9 @@ export class DropDownComponent {
     this.display = !this.sortBy;
   }
 
-  selectedCategorie(id:number){
+  selectedCategorie(id: number) {
     console.log(id);
+    this.sortBy = !this.sortBy;
+    this.display = !this.sortBy;
   }
 }

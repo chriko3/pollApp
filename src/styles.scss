@@ -46,6 +46,15 @@ input::selection {
     src: url("/assets/fonts/NerkoOne.ttf") format("truetype"),
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 183, 112, 1);
+  border-radius: 10px;
+}
+
 :root {
     --background-color: rgba(53, 39, 58, 1);
     --background-color-light-yellow: rgba(254, 233, 212, 1);

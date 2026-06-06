@@ -1,6 +1,8 @@
-import { Component, signal, HostListener } from '@angular/core';
+import { Component, signal, HostListener, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './shared/components/home-component/home-component';
+import { SupabaseServieces } from './shared/services/supabase-servieces';
+
 
 @Component({
   selector: 'app-root',
@@ -11,6 +13,13 @@ import { HomeComponent } from './shared/components/home-component/home-component
 
 export class App {
   protected readonly title = signal('pollApp');
+
+  constructor(private supabaseService: SupabaseServieces) { }
+
+  ngOnInit() {
+    this.supabaseService.logData();
+  }
+
   @HostListener('document:contextmenu', ['$event'])
   blockRightClick(event: MouseEvent) {
     event.preventDefault();

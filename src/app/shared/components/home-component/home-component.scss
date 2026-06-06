@@ -119,6 +119,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .allSurveysList>* {
