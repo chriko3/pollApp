@@ -10,23 +10,36 @@ div {
         margin: 0px;
         margin-bottom: 20px;
     }
+
+    >div {
+        display: flex;
+        align-items: start;
+
+        >p {
+            font-size: var(--font-size-12);
+            margin-right: 6px;
+        }
+
         >div {
-            display: flex;
-            align-items: start;
-            >p{
-                font-size: var(--font-size-12);
-                margin-right: 6px;
-            }
+            width: 250px;
+            height: 15px;
+            background-color: rgba(237, 237, 237, 1);
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            overflow: hidden;
+
             >div {
-                width: 250px;
-                height: 15px;
-                background-color: rgba(237, 237, 237, 1);
+                height: 100%;
+                width: 0%;
+                background-color: var(--font-color-deep-yellow);
                 border-top-right-radius: 20px;
                 border-bottom-right-radius: 20px;
             }
-            >p:last-of-type{
-                margin-left: 6px;
-                color: var(--font-color-deep-yellow);
-            }
         }
+
+        >p:last-of-type {
+            margin-left: 6px;
+            color: var(--font-color-deep-yellow);
+        }
+    }
 }

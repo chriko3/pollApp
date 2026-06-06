@@ -1,9 +1,16 @@
 <div>
     <p>{{question}}</p>
 
+    @for (bar of statisticBars.slice(0, displayAnswers); track bar) {
     <div>
-        <p>A</p>
-        <div></div>
-        <p>12%</p>
+        <p>{{ bar.answer }}</p>
+
+        <div>
+            <div [style.width.%]="bar.progress"></div>
+        </div>
+
+        <p>{{ bar.progress }}%</p>
     </div>
+    }
+
 </div>
