@@ -27,8 +27,8 @@ img {
 }
 
 input::selection {
-  background: var(--background-color-deep-yellow);
-  color: var(--font-color-dark-purple);
+    background: var(--background-color-deep-yellow);
+    color: var(--font-color-dark-purple);
 }
 
 @font-face {
@@ -63,6 +63,7 @@ input::selection {
     --font-family-Mulish: "Mulish";
     --font-family-NerkoOne: "NerkoOne";
 
+    --font-size-12: 12px;
     --font-size-14: 14px;
     --font-size-16: 16px;
     --font-size-18: 18px;
@@ -79,6 +80,7 @@ input::selection {
 
     --font-color-white: rgba(254, 253, 255, 1);
     --font-color-dark-purple: rgba(34, 18, 39, 1);
+    --font-color-deep-yellow: rgba(255, 183, 112, 1);
 
     --transition-smooth-and-bg-025: width 0.25s ease, background-color 0.25s ease;
 }

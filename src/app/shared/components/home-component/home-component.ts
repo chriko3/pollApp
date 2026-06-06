@@ -5,6 +5,7 @@ import { HighlightCardComponent } from '../highlight-card-component/highlight-ca
 import { FilterButtonComponent } from '../filter-button-component/filter-button-component';
 import { DropDownComponent } from '../drop-down-component/drop-down-component';
 import { SurveyViewComponent } from '../survey-view-component/survey-view-component';
+import { ResultsComponent } from '../results-component/results-component';
 
 @Component({
   selector: 'app-home-component',
@@ -13,7 +14,8 @@ import { SurveyViewComponent } from '../survey-view-component/survey-view-compon
     HighlightCardComponent,
     FilterButtonComponent,
     DropDownComponent,
-  SurveyViewComponent],
+  SurveyViewComponent,
+ResultsComponent],
   templateUrl: './home-component.html',
   styleUrl: './home-component.scss',
 })

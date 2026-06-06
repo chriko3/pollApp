@@ -1,11 +1,12 @@
 button {
-    width: 94px;
+    min-width: 100px;
+    width: auto;
     height: 26px;
     border: none;
     border-top-right-radius: 14px;
     font-family: var(--font-family-nokora);
-    font-size: var(--font-size-16);
-    font-weight: var(--font-weight-600);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-400);
     color: var(--font-color-dark-purple);
 
     &.light {

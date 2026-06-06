@@ -1,6 +1,6 @@
 <div class="home">
     <app-header-component [logoColor]="'light'"></app-header-component>
-
+    <!-- 
     <section class="infoSection">
         <div class="infoSection-left">
             <p>Collect Feedback, <br> Unlock Ideas</p>
@@ -34,9 +34,15 @@
         </div>
 
         <div class="yourSurveysBoxs">
-            <app-highlight-card-component></app-highlight-card-component>
-            <app-highlight-card-component></app-highlight-card-component>
-            <app-highlight-card-component></app-highlight-card-component>
+            <app-highlight-card-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
+                [dayText]="'Ends in X Day(s)'">
+            </app-highlight-card-component>
+            <app-highlight-card-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
+                [dayText]="'Ends in X Day(s)'">
+            </app-highlight-card-component>
+            <app-highlight-card-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
+                [dayText]="'Ends in X Day(s)'">
+            </app-highlight-card-component>
         </div>
     </section>
 
@@ -51,13 +57,23 @@
         </div>
 
         <div class="allSurveysList">
-            <app-survey-view-component></app-survey-view-component>
-            <app-survey-view-component></app-survey-view-component>
-            <app-survey-view-component></app-survey-view-component>
-            <app-survey-view-component></app-survey-view-component>
-            <app-survey-view-component></app-survey-view-component>
-            <app-survey-view-component></app-survey-view-component>
+            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
+                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
+            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
+                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
+            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
+                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
+            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
+                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
+            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
+                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
+            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
+                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
+
 
         </div>
     </section>
+     -->
+
+    <app-results-component [question]="'1. Question One'"></app-results-component>
 </div>

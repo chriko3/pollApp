@@ -1,6 +1,11 @@
-button {
+.dropDown {
+    position: relative;
     min-width: 110px;
     max-width: 210px;
+}
+
+button {
+    width: 100%;
     height: 32px;
     background-color: transparent;
     border: none;
@@ -28,6 +33,38 @@ button {
     }
 }
 
-.rotate180{
+.rotate180 {
     transform: rotate(180deg);
+}
+
+.display-none {
+    display: none;
+}
+
+section {
+    position: absolute;
+    z-index: 1000;
+
+    margin-top: 5px;
+    background-color: white;
+    width: 95%;
+    height: 200px;
+    border-radius: var(--border-radius-5);
+    font-family: var(--font-family-Mulish);
+    font-size: var(14);
+    padding: 5px;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: space-around;
+
+    >p {
+        margin: 0px;
+        color: var(--font-color-dark-purple);
+
+        &:hover {
+            color: var(--font-color-deep-yellow);
+            font-weight: var(--font-weight-700);
+        }
+    }
 }

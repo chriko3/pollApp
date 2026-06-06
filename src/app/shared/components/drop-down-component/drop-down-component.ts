@@ -9,10 +9,24 @@ import { ɵEmptyOutletComponent } from "@angular/router";
 })
 export class DropDownComponent {
   sortBy = false; //false = down true = up
+  display = true;
 
-  changeSortBy(){
+  listItems: string[] = [
+    'Team Activities',
+    'Health & Wellness',
+    'Gaming & Entertainment',
+    'Education & Learning',
+    'Lifestyle & Preferences',
+    'Technology & Innovation'
+  ];
+
+  changeSortBy() {
     this.sortBy = !this.sortBy;
     console.log(this.sortBy);
-    
+    this.display = !this.sortBy;
+  }
+
+  selectedCategorie(id:number){
+    console.log(id);
   }
 }

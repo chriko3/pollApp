@@ -1,0 +1,32 @@
+div {
+    width: 300px;
+    height: 25px;
+    font-family: var(--font-family-Mulish);
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-700);
+
+    >p {
+        color: var(--font-color-dark-purple);
+        margin: 0px;
+        margin-bottom: 20px;
+    }
+        >div {
+            display: flex;
+            align-items: start;
+            >p{
+                font-size: var(--font-size-12);
+                margin-right: 6px;
+            }
+            >div {
+                width: 250px;
+                height: 15px;
+                background-color: rgba(237, 237, 237, 1);
+                border-top-right-radius: 20px;
+                border-bottom-right-radius: 20px;
+            }
+            >p:last-of-type{
+                margin-left: 6px;
+                color: var(--font-color-deep-yellow);
+            }
+        }
+}
