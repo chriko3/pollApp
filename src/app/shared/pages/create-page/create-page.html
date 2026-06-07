@@ -1,13 +1,44 @@
 <div class="create wrapper">
+    <app-header-component (click)="goToHome()" logoColor="dark"></app-header-component>
+
     <section class="create-main">
         <div class="create-main-header">
             <app-survery-status-component color="light">Draft</app-survery-status-component>
             <div>
                 <p>Create new survey</p>
-                <app-secondary-button-component>Cancle</app-secondary-button-component>
+                <app-secondary-button-component (click)="goToHome()">Cancle</app-secondary-button-component>
             </div>
         </div>
         <div class="create-main-survey">
+            <div class="create-main-survey-settings">
+                <div>
+                    <p>Survey name</p>
+                    <div>
+                        <app-input-field-component></app-input-field-component>
+                        <app-delete-button-component></app-delete-button-component>
+                    </div>
+
+                    <p>Set end date (optional)</p>
+                    <div>
+                        <app-input-field-component></app-input-field-component>
+                        <app-delete-button-component></app-delete-button-component>
+                        <app-drop-down-component>Choose category</app-drop-down-component>
+                    </div>
+                </div>
+
+                <div>
+                    <p>Describing text (optional)</p>
+                    <div>
+                        <app-input-field-component></app-input-field-component>
+                        <app-delete-button-component></app-delete-button-component>
+                    </div>
+                </div>
+
+            </div>
+
+            <div clas="create-main-survey-answers">
+
+            </div>
 
         </div>
         <div class="create-main-bottom">

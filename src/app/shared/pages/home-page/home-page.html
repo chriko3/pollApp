@@ -6,7 +6,7 @@
             <p>Collect Feedback, <br> Unlock Ideas</p>
             <p>Create and share surveys in minutes – from team events to workplace culture. Collect opinions, engage
                 your audience, and turn feedback into action.</p>
-            <app-primary-button-component [icon]="'add'">New Survey</app-primary-button-component>
+            <app-primary-button-component (click)="goCreate()" [icon]="'add'">New Survey</app-primary-button-component>
         </div>
 
         <div class="infoSection-right">

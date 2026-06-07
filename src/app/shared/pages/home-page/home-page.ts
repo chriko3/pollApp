@@ -8,6 +8,7 @@ import { SurveyViewComponent } from '../../components/survey-view-component/surv
 import { ResultsComponent } from '../../components/results-component/results-component';
 import { SupabaseServieces } from '../../services/supabase-servieces';
 import { RouterLink, Router } from '@angular/router';
+import { GotoServieces } from '../../services/goto-servieces';
 
 @Component({
   selector: 'app-home-page',
@@ -26,8 +27,10 @@ export class HomePage {
   surveys: any[] = [];
   surveysEndingSoon: any[] = [];
 
-  constructor(private supabaseService: SupabaseServieces, private router: Router) { 
-    
+  constructor(private supabaseService: SupabaseServieces,
+    private router: Router,
+    private goto: GotoServieces) {
+
   }
 
   async ngOnInit() {
@@ -39,5 +42,9 @@ export class HomePage {
 
   openPage(id: number) {
     this.router.navigate(['/survey', id]);
+  }
+
+  goCreate(){
+    this.goto.goToCreate();
   }
 }

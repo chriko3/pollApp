@@ -4,16 +4,17 @@
 }
 
 .create {
-    padding: 40px 110px 90px;
+    padding: 40px 110px 0px;
 }
 
 .create-main {
+    margin-top: 30px;
     background-color: rgba(53, 39, 58, 1);
     border-radius: 5px;
     border-top-right-radius: 100px;
 
     width: auto;
-    height: auto;
+    height: 600px;
     padding: 40px 60px 130px;
 }
 
@@ -38,20 +39,63 @@
     }
 }
 
-.create-main-survey{
+.create-main-survey {
     width: 100%;
     height: 500px;
     background-color: rgba(142, 112, 153, 0.16);
     border-radius: 5px;
     border-top-right-radius: 80px;
-    margin-bottom: 40px;
+    margin-bottom: 27px;
+    padding: 40px;
+    box-sizing: border-box;
+    font-family: var(--font-family-Mulish);
+    font-smooth: var(--font-size-18);
+    font-weight: var(--font-weight-700);
+
+    p {
+        color: white;
+        margin: 0px;
+        margin-bottom: 4px;
+    }
+}
+
+.create-main-survey-settings {
+    width: 100%;
+    height: 135px;
+    background-color: green;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+
+    div {
+        div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    }
+
+    div:last-of-type {
+        div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    }
+}
+
+.create-main-survey-answers {
+    width: 100%;
+    height: 260px;
+    background-color: red;
 }
 
 
 
 
-.create-main-bottom{
-    display:flex;
+.create-main-bottom {
+    display: flex;
     align-items: center;
     justify-content: end;
 }
