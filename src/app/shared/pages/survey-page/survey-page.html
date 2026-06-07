@@ -1,0 +1,32 @@
+<div class="survey wrapper">
+    <div class="survey-header">
+        <app-header-component (click)="goToHome()" logoColor="dark"></app-header-component>
+        <app-primary-button-component icon="add">Create survey</app-primary-button-component>
+    </div>
+
+    <section class="survey-answer-container">
+        <div class="survey-answers">
+            <div class="survey-answer-info">
+                <app-survery-status-component [color]="'deep'">Published</app-survery-status-component>
+                <div>
+                    <p>Ends on XX.XX.XXXX</p>
+                    <p>Category: XX XX XX</p>
+                </div>
+            </div>
+            <div class="survey-headline">
+                <p>Here is the BIIIG Headline in this Box</p>
+                <p>
+                    We want to create team activities that everyone will enjoy – share your preferences and ideas in our
+                    survey to help us plan better experiences together.
+                </p>
+            </div>
+            <div class="survey-answer-list">
+
+            </div>
+        </div>
+
+        <div class="survey-results">
+
+        </div>
+    </section>
+</div>

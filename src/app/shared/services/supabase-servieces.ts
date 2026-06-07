@@ -7,16 +7,28 @@ import { createClient, RealtimeChannel } from '@supabase/supabase-js'
 export class SupabaseServieces {
 
   supabase = createClient('https://yulegzglfgzllxfnvknx.supabase.co', 'sb_publishable_9kmgTaT3EPexaCCJZRWaSw_wICL-zUj')
-  async logData() {
-    let { data: surveys, error } = await this.supabase
+  async getSurveys() {
+    const channels = this.supabase.channel('custom-all-channel')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'surveys' },
+        (payload) => {
+          console.log('Change received!', payload)
+        }
+      )
+      .subscribe()
+      
+    const { data, error } = await this.supabase
       .from('surveys')
-      .select('*')
+      .select('*');
 
-    if (!surveys) {
-      return;
+    if (error) {
+      console.error(error);
+      return [];
     }
-    else {
-      console.log(surveys);
-    }
+
+    return data;
   }
+
+
 }

@@ -1,6 +1,4 @@
 button {
-    min-width: 135px;
-    width: 135px;
     height: 48px;
     border-radius: 10px;
     border: none;
@@ -14,9 +12,9 @@ button {
     align-items: center;
     justify-content: space-between;
     background-color: var(--background-color-medium-yellow);
-    transition: var(--transition-smooth-and-bg-025);
     white-space: nowrap;
     cursor: pointer;
+    gap: 12px;
 
     svg {
         display: none;
@@ -25,11 +23,9 @@ button {
 
         opacity: 0;
         transform: translateX(-8px);
-        transition: all 0.25s ease;
     }
 
     &:hover {
-        width: 170px;
         background-color: var(--background-color-deep-yellow);
 
         svg {

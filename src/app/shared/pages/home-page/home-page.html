@@ -1,4 +1,4 @@
-<div class="home">
+<div class="home wrapper">
     <app-header-component [logoColor]="'light'"></app-header-component>
 
     <section class="infoSection">
@@ -34,15 +34,11 @@
         </div>
 
         <div class="yourSurveysBoxs">
-            <app-highlight-card-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
-                [dayText]="'Ends in X Day(s)'">
+            @for(item of surveysEndingSoon; track item.id) {
+            <app-highlight-card-component (click)="openPage(item.id)" [titel]="item.category" [description]="item.headline"
+                [dayText]="'Ends in ' + item.endsDay + ' Day(s)'">
             </app-highlight-card-component>
-            <app-highlight-card-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
-                [dayText]="'Ends in X Day(s)'">
-            </app-highlight-card-component>
-            <app-highlight-card-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
-                [dayText]="'Ends in X Day(s)'">
-            </app-highlight-card-component>
+            }
         </div>
     </section>
 
@@ -57,24 +53,11 @@
         </div>
 
         <div class="allSurveysList">
-            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
-                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
-            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
-                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
-            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
-                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
-            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
-                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
-            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
-                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
-            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
-                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
-            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
-                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
-            <app-survey-view-component [titel]="'Headline'" [description]="'A lot of Info Text in this box'"
-                [dayText]="'Ends in X Day(s)'"></app-survey-view-component>
-           
+            @for(item of surveys; track item.id) {
+            <app-survey-view-component (click)="openPage(item.id)" [titel]="item.category" [description]="item.headline"
+                [dayText]="'Ends in ' + item.endsDay + ' Day(s)'">
+            </app-survey-view-component>
+            }
         </div>
     </section>
-
 </div>

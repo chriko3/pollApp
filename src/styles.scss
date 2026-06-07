@@ -2,8 +2,6 @@ html,
 body {
     height: 100%;
     margin: 0;
-    background-color: var(--background-color);
-
 }
 
 * {
@@ -31,6 +29,12 @@ input::selection {
     color: var(--font-color-dark-purple);
 }
 
+.wrapper {
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 @font-face {
     font-family: "Nokora";
     src: url("/assets/fonts/Nokora.ttf") format("truetype"),
@@ -47,12 +51,16 @@ input::selection {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 183, 112, 1);
-  border-radius: 10px;
+    background: rgba(255, 183, 112, 1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 :root {

@@ -1,12 +1,15 @@
 import { Component, signal, HostListener, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HomeComponent } from './shared/components/home-component/home-component';
+import { HomePage } from './shared/pages/home-page/home-page';
 import { SupabaseServieces } from './shared/services/supabase-servieces';
+import { SurveyPage } from './shared/pages/survey-page/survey-page';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HomeComponent],
+  imports: [RouterOutlet,
+    HomePage,
+    SurveyPage],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -14,11 +17,6 @@ import { SupabaseServieces } from './shared/services/supabase-servieces';
 export class App {
   protected readonly title = signal('pollApp');
 
-  constructor(private supabaseService: SupabaseServieces) { }
-
-  ngOnInit() {
-    this.supabaseService.logData();
-  }
 
   @HostListener('document:contextmenu', ['$event'])
   blockRightClick(event: MouseEvent) {
