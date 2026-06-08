@@ -17,7 +17,7 @@ export class SupabaseServieces {
         }
       )
       .subscribe()
-      
+
     const { data, error } = await this.supabase
       .from('surveys')
       .select('*');
@@ -30,5 +30,12 @@ export class SupabaseServieces {
     return data;
   }
 
-
+  async getSurveyById(id: number) {
+    const { data, error } = await this.supabase
+      .from('surveys')
+      .select('*')
+      .eq('id', id)
+      .single();
+    return data;
+  }
 }

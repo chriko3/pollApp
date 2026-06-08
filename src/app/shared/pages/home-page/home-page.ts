@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { PrimaryButtonComponent } from '../../components/primary-button-component/primary-button-component';
 import { HeaderComponent } from '../../components/header-component/header-component';
 import { HighlightCardComponent } from '../../components/highlight-card-component/highlight-card-component';
@@ -32,15 +32,17 @@ export class HomePage {
   constructor(
     private supabaseService: SupabaseServieces,
     private router: Router,
-    private goto: GotoServieces) {
+    private goto: GotoServieces,
+    private cdr: ChangeDetectorRef) {
 
   }
 
-  async ngOnInit () {
+  async ngOnInit() {
     this.surveys = await this.supabaseService.getSurveys();
     this.surveysEndingSoon = this.surveys
       .sort((a, b) => a.endsDay - b.endsDay)
       .slice(0, 3);
+    this.cdr.detectChanges();
   }
 
   openPage(id: number) {

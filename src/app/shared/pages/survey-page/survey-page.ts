@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectorRef } from '@angular/core';
 import { HeaderComponent } from '../../components/header-component/header-component';
 import { PrimaryButtonComponent } from "../../components/primary-button-component/primary-button-component";
 import { SurveryStatusComponent } from "../../components/survery-status-component/survery-status-component";
@@ -23,14 +23,21 @@ export class SurveyPage {
   constructor(
     private supabaseService: SupabaseServieces,
     private goto: GotoServieces,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) { }
-    surveys: any[] = [];
 
-  ngOnInit() {
+  survey: any = null;
+
+  async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
-    this.loadDBSurvey();
+
+    this.survey = await this.supabaseService.getSurveyById(Number(id));
+
+    console.log(this.survey);
+    this.getEndDate();
+
+    this.cdr.detectChanges();
   }
 
   goHome() {
@@ -41,8 +48,10 @@ export class SurveyPage {
     this.goto.goToCreate();
   }
 
-  async loadDBSurvey() {
-      this.surveys = await this.supabaseService.getSurveys();
-  }
+  getEndDate() {
+    const endDay = new Date();
+    endDay.setDate(new Date().getDate() + this.survey.endsDay);
 
+    return `${endDay.getDate()}.${endDay.getMonth() + 1}.${endDay.getFullYear()}`;
+  }
 }
