@@ -10,6 +10,7 @@ import { SupabaseServieces } from '../../services/supabase-servieces';
 import { RouterLink, Router } from '@angular/router';
 import { GotoServieces } from '../../services/goto-servieces';
 import { CreateQuestionComponent } from '../../components/create-question-component/create-question-component';
+import { CategoriesService } from '../../services/categories-servieces';
 
 @Component({
   selector: 'app-home-page',
@@ -29,12 +30,14 @@ export class HomePage {
   surveys: any[] = [];
   surveysEndingSoon: any[] = [];
 
+  listItems: string[] = [];
+
   constructor(
     private supabaseService: SupabaseServieces,
     private router: Router,
     private goto: GotoServieces,
-    private cdr: ChangeDetectorRef) {
-
+    private cdr: ChangeDetectorRef,
+    private categoriesService: CategoriesService) {
   }
 
   async ngOnInit() {
@@ -43,6 +46,11 @@ export class HomePage {
       .sort((a, b) => a.endsDay - b.endsDay)
       .slice(0, 3);
     this.cdr.detectChanges();
+    this.listItems = this.categoriesService.getCategories();    
+  }
+
+  filterCategory(){
+    
   }
 
   openPage(id: number) {
