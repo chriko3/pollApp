@@ -30,14 +30,13 @@ export class HomePage {
   surveys: any[] = [];
   surveysEndingSoon: any[] = [];
 
-  listItems: string[] = [];
+  filter = 100;
 
   constructor(
     private supabaseService: SupabaseServieces,
     private router: Router,
     private goto: GotoServieces,
-    private cdr: ChangeDetectorRef,
-    private categoriesService: CategoriesService) {
+    private cdr: ChangeDetectorRef,) {
   }
 
   async ngOnInit() {
@@ -46,11 +45,10 @@ export class HomePage {
       .sort((a, b) => a.endsDay - b.endsDay)
       .slice(0, 3);
     this.cdr.detectChanges();
-    this.listItems = this.categoriesService.getCategories();    
   }
 
-  filterCategory(){
-    
+  onCategorySelected(id: number) {
+    this.filter = id;
   }
 
   openPage(id: number) {

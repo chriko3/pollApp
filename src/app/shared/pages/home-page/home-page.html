@@ -35,8 +35,8 @@
 
         <div class="yourSurveysBoxs">
             @for(item of surveysEndingSoon; track item.id) {
-            <app-highlight-card-component (click)="openPage(item.id)" [titel]="item.category" [description]="item.headline"
-                [dayText]="'Ends in ' + item.endsDay + ' Day(s)'">
+            <app-highlight-card-component (click)="openPage(item.id)" [titel]="item.category"
+                [description]="item.headline" [dayText]="'Ends in ' + item.endsDay + ' Day(s)'">
             </app-highlight-card-component>
             }
         </div>
@@ -49,14 +49,65 @@
                 <app-filter-button-component>Past survey</app-filter-button-component>
             </div>
 
-            <app-drop-down-component>Sort by categories</app-drop-down-component>
+            <app-drop-down-component (categorySelected)="onCategorySelected($event)">Sort by categories</app-drop-down-component>
         </div>
 
         <div class="allSurveysList">
             @for(item of surveys; track item.id) {
+            @if(filter === 0){
+            @if(item.category === 'Team Activities'){
             <app-survey-view-component (click)="openPage(item.id)" [titel]="item.category" [description]="item.headline"
                 [dayText]="'Ends in ' + item.endsDay + ' Day(s)'">
             </app-survey-view-component>
+            }
+            }
+
+            @else if(filter === 1){
+            @if(item.category === 'Health & Wellness'){
+            <app-survey-view-component (click)="openPage(item.id)" [titel]="item.category" [description]="item.headline"
+                [dayText]="'Ends in ' + item.endsDay + ' Day(s)'">
+            </app-survey-view-component>
+            }
+            }
+
+            @else if(filter === 2){
+            @if(item.category === 'Gaming & Entertainment'){
+            <app-survey-view-component (click)="openPage(item.id)" [titel]="item.category" [description]="item.headline"
+                [dayText]="'Ends in ' + item.endsDay + ' Day(s)'">
+            </app-survey-view-component>
+            }
+            }
+
+
+            @else if(filter === 3){
+            @if(item.category === 'Education & Learning'){
+            <app-survey-view-component (click)="openPage(item.id)" [titel]="item.category" [description]="item.headline"
+                [dayText]="'Ends in ' + item.endsDay + ' Day(s)'">
+            </app-survey-view-component>
+            }
+            }
+
+            @else if(filter === 4){
+            @if(item.category === 'Lifestyle & Preferences'){
+            <app-survey-view-component (click)="openPage(item.id)" [titel]="item.category" [description]="item.headline"
+                [dayText]="'Ends in ' + item.endsDay + ' Day(s)'">
+            </app-survey-view-component>
+            }
+            }
+
+            @else if(filter === 5){
+            @if(item.category === 'Technology & Innovation'){
+            <app-survey-view-component (click)="openPage(item.id)" [titel]="item.category" [description]="item.headline"
+                [dayText]="'Ends in ' + item.endsDay + ' Day(s)'">
+            </app-survey-view-component>
+            }
+            }
+
+            @else{
+            <app-survey-view-component (click)="openPage(item.id)" [titel]="item.category" [description]="item.headline"
+                [dayText]="'Ends in ' + item.endsDay + ' Day(s)'">
+            </app-survey-view-component>
+            }
             }
         </div>
     </section>

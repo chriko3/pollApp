@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ɵEmptyOutletComponent } from "@angular/router";
 import { CategoriesService } from '../../services/categories-servieces';
 
@@ -12,7 +12,10 @@ export class DropDownComponent {
   sortBy = false; //false = down true = up
   display = true;
 
+  selectedItem: string = "";
+
   constructor(private categoriesService: CategoriesService) { }
+  @Output() categorySelected = new EventEmitter<number>();
 
   listItems: string[] = [];
 
@@ -27,8 +30,15 @@ export class DropDownComponent {
   }
 
   selectedCategorie(id: number) {
+    this.selectedItem = this.listItems[id];
     console.log(id);
+    this.categorySelected.emit(id);
     this.sortBy = !this.sortBy;
     this.display = !this.sortBy;
+  }
+
+  deleteFilter() {
+    this.categorySelected.emit(100);
+    this.selectedItem = "";
   }
 }
