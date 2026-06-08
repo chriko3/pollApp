@@ -7,9 +7,9 @@ import { SurveyPage } from './shared/pages/survey-page/survey-page';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, 
+  imports: [RouterOutlet,
     HomePage,
-  SurveyPage],
+    SurveyPage,],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

@@ -36,7 +36,15 @@
 
             </div>
 
-            <div clas="create-main-survey-answers">
+            <div class="create-main-survey-answers">
+                @for(item of questions; track item; let i = $index) {
+                <app-create-question-component [questionNumber]="i + 1"></app-create-question-component>
+                }
+
+                <app-primary-button-component icon="add" (click)="addQuestion()"
+                    [style.display]="questions.length >= 10 ? 'none' : 'block'">
+                    Add next question
+                </app-primary-button-component>
 
             </div>
 

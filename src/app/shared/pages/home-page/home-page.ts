@@ -9,6 +9,7 @@ import { ResultsComponent } from '../../components/results-component/results-com
 import { SupabaseServieces } from '../../services/supabase-servieces';
 import { RouterLink, Router } from '@angular/router';
 import { GotoServieces } from '../../services/goto-servieces';
+import { CreateQuestionComponent } from '../../components/create-question-component/create-question-component';
 
 @Component({
   selector: 'app-home-page',
@@ -19,7 +20,8 @@ import { GotoServieces } from '../../services/goto-servieces';
     DropDownComponent,
     SurveyViewComponent,
     ResultsComponent,
-    RouterLink],
+    RouterLink,
+    CreateQuestionComponent],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
@@ -33,7 +35,7 @@ export class HomePage {
 
   }
 
-  async ngOnInit() {
+  async ngOnInit () {
     this.surveys = await this.supabaseService.getSurveys();
     this.surveysEndingSoon = this.surveys
       .sort((a, b) => a.endsDay - b.endsDay)
@@ -44,7 +46,7 @@ export class HomePage {
     this.router.navigate(['/survey', id]);
   }
 
-  goCreate(){
+  goCreate() {
     this.goto.goToCreate();
   }
 }
