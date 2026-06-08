@@ -29,7 +29,8 @@ export class HomePage {
   surveys: any[] = [];
   surveysEndingSoon: any[] = [];
 
-  constructor(private supabaseService: SupabaseServieces,
+  constructor(
+    private supabaseService: SupabaseServieces,
     private router: Router,
     private goto: GotoServieces) {
 

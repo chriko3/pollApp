@@ -29,7 +29,7 @@ export class CreateQuestionComponent {
   }
 
   addQuestion() {
-    if (this.questions.length < 4) {
+    if (this.questions.length < 5) {
       this.questions.push(this.questions.length + 1);
     }
   }

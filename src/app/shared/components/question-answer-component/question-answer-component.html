@@ -1,0 +1,16 @@
+<section>
+    <div>
+        <p>{{questionNumber}}. Here is the question</p>
+        <p>More than one answers are possible.</p>
+    </div>
+
+    <div class="answers">
+        @for(item of questions; track item; let i = $index){
+        <div>
+            <app-checkbox-component>
+                <p>{{getLetterFromNumber(i)}} Billiard</p>
+            </app-checkbox-component>
+        </div>
+        }
+    </div>
+</section>
