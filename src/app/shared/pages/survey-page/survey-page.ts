@@ -7,6 +7,7 @@ import { QuestionAnswerComponent } from '../../components/question-answer-compon
 import { AnswearComponent } from "../../components/answear-component/answear-component";
 import { ActivatedRoute } from '@angular/router';
 import { SupabaseServieces } from '../../services/supabase-servieces';
+import { ResultsComponent } from "../../components/results-component/results-component";
 
 @Component({
   selector: 'app-survey-page',
@@ -14,8 +15,7 @@ import { SupabaseServieces } from '../../services/supabase-servieces';
     PrimaryButtonComponent,
     SurveryStatusComponent,
     QuestionAnswerComponent,
-    AnswearComponent,
-  ],
+    AnswearComponent, ResultsComponent],
   templateUrl: './survey-page.html',
   styleUrl: './survey-page.scss',
 })

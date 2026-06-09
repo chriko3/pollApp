@@ -9,15 +9,7 @@ export class SupabaseServieces {
     'https://yulegzglfgzllxfnvknx.supabase.co',
     'sb_publishable_9kmgTaT3EPexaCCJZRWaSw_wICL-zUj',
   );
-  async getSurveys() {
-    const channels = this.supabase
-      .channel('custom-all-channel')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'surveys' }, (payload) => {
-        console.log('Change received!', payload);
-      })
-      .subscribe();
-
-    const { data, error } = await this.supabase.from('surveys').select('*');
+  async getSurveys() {    const { data, error } = await this.supabase.from('surveys').select('*');
 
     if (error) {
       console.error(error);
@@ -33,7 +25,11 @@ export class SupabaseServieces {
   }
 
   async getQuestionsById(id: number) {
-    const { data, error } = await this.supabase.from('questions').select('*').eq('survey_id', id);
+    const { data, error } = await this.supabase
+      .from('questions')
+      .select('*')
+      .eq('survey_id', id)
+      .order('id', { ascending: true });
     return data;
   }
 
@@ -41,8 +37,9 @@ export class SupabaseServieces {
     const { data, error } = await this.supabase
       .from('answers')
       .select('*')
-      .eq('question_id', survey_id)
-      .eq('question_id', survey_id);
+      .eq('survey_id', survey_id)
+      .order('created_at', { ascending: true });
+
     return data;
   }
 }
