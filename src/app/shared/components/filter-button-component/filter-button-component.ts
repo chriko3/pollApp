@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-filter-button-component',
@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './filter-button-component.scss',
 })
 export class FilterButtonComponent {
-  isClicked = false;
+  @Input() isClicked?: Boolean;
 
   changeBgColor() {
     this.isClicked = !this.isClicked;

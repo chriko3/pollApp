@@ -38,7 +38,7 @@ export class DropDownComponent {
   }
 
   deleteFilter() {
-    this.categorySelected.emit(100);
+    this.categorySelected.emit(-1);
     this.selectedItem = "";
   }
 }

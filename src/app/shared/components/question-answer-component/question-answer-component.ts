@@ -9,7 +9,11 @@ import { CheckboxComponent } from '../checkbox-component/checkbox-component';
 })
 export class QuestionAnswerComponent {
   @Input() questionNumber = 1;
-  questions = [1, 2 ,3 ,4 ,5];
+  @Input() questionTitle = '';
+  @Input() questionMoreAnswers = true;
+
+  // @Input() questions = [1, 2 ,3 ,4 ,5];
+  @Input() questions: { text: string }[] = [];
 
   getLetterFromNumber(i: number) {
     return String.fromCharCode(65 + i);

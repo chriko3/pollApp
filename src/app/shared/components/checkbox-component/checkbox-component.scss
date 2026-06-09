@@ -1,14 +1,22 @@
+div {
+  display: flex;
+  align-items: start;
+  max-width: 270px;
+  cursor: pointer;
+  p{
+    margin: 0px;
+    margin-top: -3px;
+  }
+}
 input {
   appearance: none;
-  width: 16px;
+  min-width: 16px;
   height: 16px;
-
   border: 1px solid black;
   border-radius: 3px;
 
   background-color: transparent;
   transition: var(--transition-smooth-and-bg-025);
-  cursor: pointer;
 
   display: inline-grid;
   place-items: center;
@@ -22,7 +30,7 @@ input:checked {
 }
 
 input::after {
-  content: "";
+  content: '';
   width: 3px;
   height: 7px;
 

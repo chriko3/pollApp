@@ -14,7 +14,8 @@ import { CategoriesService } from '../../services/categories-servieces';
 
 @Component({
   selector: 'app-home-page',
-  imports: [HeaderComponent,
+  imports: [
+    HeaderComponent,
     PrimaryButtonComponent,
     HighlightCardComponent,
     FilterButtonComponent,
@@ -22,7 +23,8 @@ import { CategoriesService } from '../../services/categories-servieces';
     SurveyViewComponent,
     ResultsComponent,
     RouterLink,
-    CreateQuestionComponent],
+    CreateQuestionComponent,
+  ],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
@@ -30,18 +32,21 @@ export class HomePage {
   surveys: any[] = [];
   surveysEndingSoon: any[] = [];
 
-  filter = 100;
+  filter = -1;
+  activeSurveyFilter = true;
+  pastSurveyFilter = false;
 
   constructor(
     private supabaseService: SupabaseServieces,
     private router: Router,
     private goto: GotoServieces,
-    private cdr: ChangeDetectorRef,) {
-  }
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   async ngOnInit() {
     this.surveys = await this.supabaseService.getSurveys();
     this.surveysEndingSoon = this.surveys
+      .filter((s) => s.endsDay >= 0)
       .sort((a, b) => a.endsDay - b.endsDay)
       .slice(0, 3);
     this.cdr.detectChanges();
@@ -57,5 +62,10 @@ export class HomePage {
 
   goCreate() {
     this.goto.goToCreate();
+  }
+
+  activeOrPastSurvey() {
+    this.activeSurveyFilter = !this.activeSurveyFilter;
+    this.pastSurveyFilter = !this.activeSurveyFilter;
   }
 }

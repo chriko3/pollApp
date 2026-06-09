@@ -51,7 +51,6 @@ export class SurveyPage {
   getEndDate() {
     const endDay = new Date();
     endDay.setDate(new Date().getDate() + this.survey.endsDay);
-
     return `${endDay.getDate()}.${endDay.getMonth() + 1}.${endDay.getFullYear()}`;
   }
 }
