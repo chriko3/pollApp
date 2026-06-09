@@ -28,13 +28,18 @@ export class SurveyPage {
   ) { }
 
   survey: any = null;
+  questions: any = null;
+  answers: any = null;
 
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
 
     this.survey = await this.supabaseService.getSurveyById(Number(id));
+    this.questions = await this.supabaseService.getQuestionsById(Number(id));
+    this.answers = await this.supabaseService.getAnswersById(Number(id));
 
-    console.log(this.survey);
+    console.log(this.answers);
+
     this.getEndDate();
 
     this.cdr.detectChanges();

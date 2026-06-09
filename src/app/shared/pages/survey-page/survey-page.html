@@ -21,18 +21,20 @@
           <p>{{ survey.description }}</p>
         </div>
         <div class="survey-answer-list">
-          <app-question-answer-component
-            [questionNumber]="1"
-            [questionTitle]="'Test Question'"
-            [questionMoreAnswers]="true"
-            [questions]="[
-              { text: 'Billiard or news' },
-              { text: 'Do you like Angular?' },
-              { text: 'Coffee or tea?' },
-              { text: 'Test' },
-              { text: 'Test' },
-            ]"
-          ></app-question-answer-component>
+          @for (item of questions; track item; let i = $index) {
+            <app-question-answer-component
+              [questionNumber]="i+1"
+              [questionTitle]="item.question_headline"
+              [questionMoreAnswers]="item.multiple_choice"
+              [questions]="[
+                { text: 'Billiard or news' },
+                { text: 'Do you like Angular?' },
+                { text: 'Coffee or tea?' },
+                { text: 'Test' },
+                { text: 'Test' },
+              ]"
+            ></app-question-answer-component>
+          }
         </div>
       </div>
 

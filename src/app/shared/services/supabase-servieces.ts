@@ -1,26 +1,23 @@
 import { Injectable } from '@angular/core';
-import { createClient, RealtimeChannel } from '@supabase/supabase-js'
+import { createClient, RealtimeChannel } from '@supabase/supabase-js';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SupabaseServieces {
-
-  supabase = createClient('https://yulegzglfgzllxfnvknx.supabase.co', 'sb_publishable_9kmgTaT3EPexaCCJZRWaSw_wICL-zUj')
+  supabase = createClient(
+    'https://yulegzglfgzllxfnvknx.supabase.co',
+    'sb_publishable_9kmgTaT3EPexaCCJZRWaSw_wICL-zUj',
+  );
   async getSurveys() {
-    const channels = this.supabase.channel('custom-all-channel')
-      .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'surveys' },
-        (payload) => {
-          console.log('Change received!', payload)
-        }
-      )
-      .subscribe()
+    const channels = this.supabase
+      .channel('custom-all-channel')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'surveys' }, (payload) => {
+        console.log('Change received!', payload);
+      })
+      .subscribe();
 
-    const { data, error } = await this.supabase
-      .from('surveys')
-      .select('*');
+    const { data, error } = await this.supabase.from('surveys').select('*');
 
     if (error) {
       console.error(error);
@@ -31,11 +28,21 @@ export class SupabaseServieces {
   }
 
   async getSurveyById(id: number) {
+    const { data, error } = await this.supabase.from('surveys').select('*').eq('id', id).single();
+    return data;
+  }
+
+  async getQuestionsById(id: number) {
+    const { data, error } = await this.supabase.from('questions').select('*').eq('survey_id', id);
+    return data;
+  }
+
+  async getAnswersById(survey_id: number) {
     const { data, error } = await this.supabase
-      .from('surveys')
+      .from('answers')
       .select('*')
-      .eq('id', id)
-      .single();
+      .eq('question_id', survey_id)
+      .eq('question_id', survey_id);
     return data;
   }
 }
