@@ -43,7 +43,7 @@
         <div class="survey-results-all">
           @for (item of questions; track item; let i = $index) {
             <app-results-component
-              [question]="item.question_headline"
+              [question]="i+1 + '. ' +item.question_headline"
               [bars]="
                 answers
                   .filter((a) => a.question_id === item.id)

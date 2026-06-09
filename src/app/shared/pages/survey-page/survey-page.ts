@@ -1,21 +1,24 @@
 import { Component, Inject, ChangeDetectorRef } from '@angular/core';
 import { HeaderComponent } from '../../components/header-component/header-component';
-import { PrimaryButtonComponent } from "../../components/primary-button-component/primary-button-component";
-import { SurveryStatusComponent } from "../../components/survery-status-component/survery-status-component";
+import { PrimaryButtonComponent } from '../../components/primary-button-component/primary-button-component';
+import { SurveryStatusComponent } from '../../components/survery-status-component/survery-status-component';
 import { GotoServieces } from '../../services/goto-servieces';
 import { QuestionAnswerComponent } from '../../components/question-answer-component/question-answer-component';
-import { AnswearComponent } from "../../components/answear-component/answear-component";
+import { AnswearComponent } from '../../components/answear-component/answear-component';
 import { ActivatedRoute } from '@angular/router';
 import { SupabaseServieces } from '../../services/supabase-servieces';
-import { ResultsComponent } from "../../components/results-component/results-component";
+import { ResultsComponent } from '../../components/results-component/results-component';
 
 @Component({
   selector: 'app-survey-page',
-  imports: [HeaderComponent,
+  imports: [
+    HeaderComponent,
     PrimaryButtonComponent,
     SurveryStatusComponent,
     QuestionAnswerComponent,
-    AnswearComponent, ResultsComponent],
+    AnswearComponent,
+    ResultsComponent,
+  ],
   templateUrl: './survey-page.html',
   styleUrl: './survey-page.scss',
 })
@@ -24,8 +27,8 @@ export class SurveyPage {
     private supabaseService: SupabaseServieces,
     private goto: GotoServieces,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
-  ) { }
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   survey: any = null;
   questions: any = null;
@@ -38,7 +41,23 @@ export class SurveyPage {
     this.questions = await this.supabaseService.getQuestionsById(Number(id));
     this.answers = await this.supabaseService.getAnswersById(Number(id));
 
-    console.log(this.answers[0].clicked);
+    const counters: number[] = [];
+    let max:number = 0;
+    for (let index = 0; index < this.answers.length; index++) {
+      const qId = this.answers[index].question_id;
+      if (!counters[qId]) {
+        counters[qId] = 0;
+      }
+
+      counters[qId] += this.answers[index].clicked;
+    }
+
+    for (let index = 0; index < counters.length; index++) {
+      max += counters[index] ?? 0;
+    }
+    console.log(max);
+    
+
 
     this.getEndDate();
 
