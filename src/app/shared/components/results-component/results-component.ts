@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 
+
 @Component({
   selector: 'app-results-component',
   imports: [],
@@ -9,14 +10,9 @@ import { Component, Input } from '@angular/core';
 export class ResultsComponent {
   @Input() question?: string;
 
-  @Input() displayAnswers: 2 | 3 | 4 = 2;
+  @Input() bars: { percentage: number }[] = [{ percentage: 0 }, { percentage: 0 }];
 
-  statisticBars: { answer: string; progress: number; }[] = [
-    { answer: 'A', progress: 0 },
-    { answer: 'B', progress: 0 },
-    { answer: 'C', progress: 0 },
-    { answer: 'D', progress: 0 }
-  ];
-
-
+  getLetterFromIndex(i: number) {
+    return String.fromCharCode(65 + i);
+  }
 }

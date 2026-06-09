@@ -38,7 +38,7 @@ export class SupabaseServieces {
       .from('answers')
       .select('*')
       .eq('survey_id', survey_id)
-      .order('created_at', { ascending: true });
+      .order('id', { ascending: true });
 
     return data;
   }

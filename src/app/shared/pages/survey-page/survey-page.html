@@ -40,9 +40,18 @@
         <div class="survey-results-headline">
           <p>Survey results <span>LIVE</span></p>
         </div>
-
-        <app-results-component></app-results-component>
-
+        <div class="survey-results-all">
+          @for (item of questions; track item; let i = $index) {
+            <app-results-component
+              [question]="item.question_headline"
+              [bars]="
+                answers
+                  .filter((a) => a.question_id === item.id)
+                  //here procent
+              "
+            ></app-results-component>
+          }
+        </div>
       </div>
     </section>
   </div>

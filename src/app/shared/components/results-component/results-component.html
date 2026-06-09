@@ -1,16 +1,15 @@
 <div>
-    <p>{{question}}</p>
+  <p>{{ question }}</p>
 
-    @for (bar of statisticBars.slice(0, displayAnswers); track bar) {
+  @for (item of bars; track item; let i = $index) {
     <div>
-        <p>{{ bar.answer }}</p>
+      <p>{{ getLetterFromIndex(i) }}</p>
 
-        <div>
-            <div [style.width.%]="bar.progress"></div>
-        </div>
+      <div>
+        <div [style.width.%]="item.percentage"></div>
+      </div>
 
-        <p>{{ bar.progress }}%</p>
+      <p>{{ item.percentage }}%</p>
     </div>
-    }
-
+  }
 </div>

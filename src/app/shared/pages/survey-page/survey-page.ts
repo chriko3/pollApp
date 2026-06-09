@@ -38,7 +38,7 @@ export class SurveyPage {
     this.questions = await this.supabaseService.getQuestionsById(Number(id));
     this.answers = await this.supabaseService.getAnswersById(Number(id));
 
-    console.log(this.answers);
+    console.log(this.answers[0].clicked);
 
     this.getEndDate();
 
