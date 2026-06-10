@@ -9,7 +9,7 @@
         <div [style.width.%]="item.percentage"></div>
       </div>
 
-      <p>{{ item.percentage }}%</p>
+      <p>{{ item.percentage | number: '1.0-0'}}%</p>
     </div>
   }
 </div>

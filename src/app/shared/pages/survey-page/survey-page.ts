@@ -33,6 +33,7 @@ export class SurveyPage {
   survey: any = null;
   questions: any = null;
   answers: any = null;
+  counters: number[] = [];
 
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -40,28 +41,23 @@ export class SurveyPage {
     this.survey = await this.supabaseService.getSurveyById(Number(id));
     this.questions = await this.supabaseService.getQuestionsById(Number(id));
     this.answers = await this.supabaseService.getAnswersById(Number(id));
+    this.getEndDate();
+    this.buildCounters();
+    this.cdr.detectChanges();
+  }
 
-    const counters: number[] = [];
-    let max:number = 0;
-    for (let index = 0; index < this.answers.length; index++) {
-      const qId = this.answers[index].question_id;
-      if (!counters[qId]) {
-        counters[qId] = 0;
+  buildCounters() {
+    this.counters = [];
+
+    for (let i = 0; i < this.answers.length; i++) {
+      const qId = this.answers[i].question_id;
+
+      if (!this.counters[qId]) {
+        this.counters[qId] = 0;
       }
 
-      counters[qId] += this.answers[index].clicked;
+      this.counters[qId] += this.answers[i].clicked;
     }
-
-    for (let index = 0; index < counters.length; index++) {
-      max += counters[index] ?? 0;
-    }
-    console.log(max);
-    
-
-
-    this.getEndDate();
-
-    this.cdr.detectChanges();
   }
 
   goHome() {

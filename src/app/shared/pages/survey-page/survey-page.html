@@ -43,11 +43,13 @@
         <div class="survey-results-all">
           @for (item of questions; track item; let i = $index) {
             <app-results-component
-              [question]="i+1 + '. ' +item.question_headline"
+              [question]="i + 1 + '. ' + item.question_headline"
               [bars]="
                 answers
                   .filter((a) => a.question_id === item.id)
-                  //here procent
+                  .map((a) => ({
+                    percentage: counters[item.id] ? (a.clicked / counters[item.id]) * 100 : 0,
+                  }))
               "
             ></app-results-component>
           }
