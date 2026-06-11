@@ -44,6 +44,14 @@ export class SurveyPage {
     this.getEndDate();
     this.buildCounters();
     this.cdr.detectChanges();
+
+    this.supabaseService.subscribeAnswers((payload) => {
+      console.log('Update!', payload);
+    });
+  }
+
+  async loadStatisticsFromDB() {
+    this.answers = await this.supabaseService.getAnswersById(this.survey.id);
   }
 
   buildCounters() {

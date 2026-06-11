@@ -9,7 +9,8 @@ export class SupabaseServieces {
     'https://yulegzglfgzllxfnvknx.supabase.co',
     'sb_publishable_9kmgTaT3EPexaCCJZRWaSw_wICL-zUj',
   );
-  async getSurveys() {    const { data, error } = await this.supabase.from('surveys').select('*');
+  async getSurveys() {
+    const { data, error } = await this.supabase.from('surveys').select('*');
 
     if (error) {
       console.error(error);
@@ -41,5 +42,22 @@ export class SupabaseServieces {
       .order('id', { ascending: true });
 
     return data;
+  }
+
+  subscribeAnswers(callback: (payload: any) => void) {
+    return this.supabase
+      .channel('custom-all-channel')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'answers',
+        },
+        (payload) => {
+          callback(payload);
+        },
+      )
+      .subscribe();
   }
 }

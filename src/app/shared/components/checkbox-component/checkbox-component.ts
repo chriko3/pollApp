@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './checkbox-component.html',
   styleUrl: './checkbox-component.scss',
+  
 })
 export class CheckboxComponent {
   click() {

@@ -29,7 +29,7 @@
                 <div>
                     <p>Describing text (optional)</p>
                     <div>
-                        <app-input-field-component [style.height.px]="90"></app-input-field-component>
+                        <app-input-field-component></app-input-field-component>
                         <app-delete-button-component></app-delete-button-component>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
 
         </div>
         <div class="create-main-bottom">
-            <app-primary-button-component icon="check">Publish</app-primary-button-component>
+            <app-primary-button-component icon="check" (click)="publishSurvey()">Publish</app-primary-button-component>
         </div>
     </section>
 </div>
