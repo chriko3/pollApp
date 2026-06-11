@@ -12,7 +12,6 @@ export class QuestionAnswerComponent {
   @Input() questionTitle = '';
   @Input() questionMoreAnswers = true;
 
-  // @Input() questions = [1, 2 ,3 ,4 ,5];
   @Input() questions: { text: string }[] = [];
 
   getLetterFromNumber(i: number) {

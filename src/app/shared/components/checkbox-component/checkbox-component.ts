@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { ɵEmptyOutletComponent } from "@angular/router";
 
 @Component({
   selector: 'app-checkbox-component',
-  imports: [ɵEmptyOutletComponent],
+  imports: [],
   templateUrl: './checkbox-component.html',
   styleUrl: './checkbox-component.scss',
 })
-export class CheckboxComponent {}
+export class CheckboxComponent {
+  click() {
+    console.log('test');
+  }
+}
