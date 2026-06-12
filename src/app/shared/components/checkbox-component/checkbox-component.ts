@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { SupabaseServieces } from '../../services/supabase-servieces';
 import { ActivatedRoute } from '@angular/router';
 
@@ -26,14 +26,9 @@ export class CheckboxComponent {
     this.checkedCheckbox = !this.checkedCheckbox;
 
     for (let index = 0; index < this.answers.length; index++) {
-      if (this.checkedCheckbox) {
-        if (answer === this.answers[index].answer_text) {
-          this.supabaseService.updatedClickedAnswerInDB(answer, this.checkedCheckbox);
-        }
-      }
-      else{
-          this.supabaseService.updatedClickedAnswerInDB(answer, false);
-
+      if (answer === this.answers[index].answer_text) {
+        this.supabaseService.updatedClickedAnswerInDB(answer, this.checkedCheckbox);
+        break;
       }
     }
   }

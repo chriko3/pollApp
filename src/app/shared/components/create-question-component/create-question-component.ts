@@ -1,31 +1,39 @@
-import { Component, Input } from '@angular/core';
-import { DeleteButtonComponent } from "../delete-button-component/delete-button-component";
-import { InputFieldComponent } from "../input-field-component/input-field-component";
-import { CheckboxComponent } from "../checkbox-component/checkbox-component";
-import { TertiaryButtonComponent } from "../tertiary-button-component/tertiary-button-component";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { DeleteButtonComponent } from '../delete-button-component/delete-button-component';
+import { InputFieldComponent } from '../input-field-component/input-field-component';
+import { CheckboxComponent } from '../checkbox-component/checkbox-component';
+import { TertiaryButtonComponent } from '../tertiary-button-component/tertiary-button-component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-create-question-component',
-  imports: [DeleteButtonComponent,
+  imports: [
+    DeleteButtonComponent,
     InputFieldComponent,
     CheckboxComponent,
     TertiaryButtonComponent,
-    FormsModule],
+    FormsModule,
+  ],
   templateUrl: './create-question-component.html',
   styleUrl: './create-question-component.scss',
 })
 export class CreateQuestionComponent {
   @Input() questionNumber = 1;
+  @Output() valueChanged = new EventEmitter<{ field: string; value: string }>();
+  @Output() destroy = new EventEmitter<void>();
   questions = [1, 2];
   question = {
-    title: "",
+    title: '',
     allowMultiple: false,
-    answers: ['', '']
+    answers: ['', ''],
   };
 
-  log() {
-    console.log(this.question);
+  destroySection() {
+    this.destroy.emit();
+  }
+
+  onChildChange(event: { field: string; value: string }) {
+    this.valueChanged.emit(event);
   }
 
   addQuestion() {

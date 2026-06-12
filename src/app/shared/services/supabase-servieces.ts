@@ -44,7 +44,7 @@ export class SupabaseServieces {
     return data;
   }
 
-  async updatedClickedAnswerInDB(answerText: string, add:boolean) {
+  async updatedClickedAnswerInDB(answerText: string, add: boolean) {
     const { data } = await this.supabase
       .from('answers')
       .select('clicked')
@@ -72,5 +72,35 @@ export class SupabaseServieces {
         },
       )
       .subscribe();
+  }
+
+  async createSurvey(survey: {
+    category: string;
+    headline: string;
+    endsDay: number;
+    description: string;
+  }) {
+    const { data, error } = await this.supabase.from('surveys').insert(survey).select().single();
+    if (error) console.error(error);
+    return data;
+  }
+
+  async createQuestion(question: {
+    survey_id: string;
+    multiple_choice: boolean;
+    question_headline: string;
+  }) {
+    const { data, error } = await this.supabase
+      .from('questions')
+      .insert(question)
+      .select()
+      .single();
+    if (error) console.error(error);
+    return data;
+  }
+
+  async createAnswer(answer: { survey_id: string; question_id: string; answer_text: string }) {
+    const { error } = await this.supabase.from('answers').insert(answer);
+    if (error) console.error(error);
   }
 }

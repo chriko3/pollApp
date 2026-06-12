@@ -1,21 +1,28 @@
 <section>
-    <div class="question-header">
-        <p>{{questionNumber}}. Question</p>
-        <app-delete-button-component (click)="log()"></app-delete-button-component>
+  <div class="question-header">
+    <p>{{ questionNumber }}. Question</p>
+    <app-delete-button-component (click)="destroySection()"></app-delete-button-component>
+  </div>
+  <app-input-field-component
+    fieldName="QuestionTitle_{{ questionNumber }}"
+    (valueChanged)="onChildChange($event)"
+  ></app-input-field-component>
+  <div class="question-body">
+    <div>
+      <p>Answers</p>
+      <app-checkbox-component>Allow multiple answers</app-checkbox-component>
     </div>
-    <app-input-field-component></app-input-field-component>
-    <div class="question-body">
-        <div>
-            <p>Answers</p>
-            <app-checkbox-component>Allow multiple answers</app-checkbox-component>
-        </div>
-        @for(item of questions; track item; let i = $index){
-        <div>
-            <p>{{getLetterFromNumber(i)}}.</p>
-            <app-input-field-component></app-input-field-component>
-            <app-delete-button-component (click)="deleteQuestion(i)"></app-delete-button-component>
-        </div>
-        }
-        <app-tertiary-button-component (click)="addQuestion()"></app-tertiary-button-component>
-    </div>
+    @for (item of questions; track item; let i = $index) {
+      <div>
+        <p>{{ getLetterFromNumber(i) }}.</p>
+        <app-input-field-component
+          fieldName="Answer_{{ questionNumber }}_{{ getLetterFromNumber(i) }}"
+          (valueChanged)="onChildChange($event)"
+        >
+        </app-input-field-component>
+        <app-delete-button-component (click)="deleteQuestion(i)"></app-delete-button-component>
+      </div>
+    }
+    <app-tertiary-button-component (click)="addQuestion()"></app-tertiary-button-component>
+  </div>
 </section>
