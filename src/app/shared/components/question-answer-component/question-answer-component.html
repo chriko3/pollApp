@@ -5,9 +5,9 @@
   </div>
 
   <div class="answers">
-    @for (item of questions; track item; let i = $index) {
+    @for (item of questions; track $index; let i = $index) {
       <div>
-        <app-checkbox-component>
+        <app-checkbox-component [answer]=item.text>
           <p>{{ getLetterFromNumber(i) }}. {{ item.text }}</p>
         </app-checkbox-component>
       </div>

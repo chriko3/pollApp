@@ -44,6 +44,19 @@ export class SupabaseServieces {
     return data;
   }
 
+  async updatedClickedAnswerInDB(answerText: string, add:boolean) {
+    const { data } = await this.supabase
+      .from('answers')
+      .select('clicked')
+      .eq('answer_text', answerText)
+      .single();
+
+    await this.supabase
+      .from('answers')
+      .update({ clicked: (data?.clicked ?? 0) + (add ? 1 : -1) })
+      .eq('answer_text', answerText);
+  }
+
   subscribeAnswers(callback: (payload: any) => void) {
     return this.supabase
       .channel('custom-all-channel')

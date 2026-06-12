@@ -46,7 +46,6 @@ export class SurveyPage {
     this.cdr.detectChanges();
 
     this.supabaseService.subscribeAnswers((payload) => {
-      console.log('Update!', payload);
       this.loadStatisticsFromDB();
     });
   }
@@ -66,7 +65,6 @@ export class SurveyPage {
       if (!this.counters[qId]) {
         this.counters[qId] = 0;
       }
-
       this.counters[qId] += this.answers[i].clicked;
     }
   }

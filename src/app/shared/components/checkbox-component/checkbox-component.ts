@@ -1,14 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SupabaseServieces } from '../../services/supabase-servieces';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-checkbox-component',
   imports: [],
   templateUrl: './checkbox-component.html',
   styleUrl: './checkbox-component.scss',
-  
 })
 export class CheckboxComponent {
-  click() {
-    console.log('test');
+  @Input() answer: string = '';
+  answers: any = null;
+  checkedCheckbox = false;
+  constructor(
+    private supabaseService: SupabaseServieces,
+    private route: ActivatedRoute,
+  ) {}
+
+  async ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.answers = await this.supabaseService.getAnswersById(Number(id));
+  }
+
+  changeValueOnDB(answer: string) {
+    this.checkedCheckbox = !this.checkedCheckbox;
+
+    for (let index = 0; index < this.answers.length; index++) {
+      if (this.checkedCheckbox) {
+        if (answer === this.answers[index].answer_text) {
+          this.supabaseService.updatedClickedAnswerInDB(answer, this.checkedCheckbox);
+        }
+      }
+      else{
+          this.supabaseService.updatedClickedAnswerInDB(answer, false);
+
+      }
+    }
   }
 }
