@@ -10,6 +10,7 @@ import { DropDownComponent } from '../../components/drop-down-component/drop-dow
 import { HighlightCardComponent } from '../../components/highlight-card-component/highlight-card-component';
 import { CreateQuestionComponent } from '../../components/create-question-component/create-question-component';
 import { SupabaseServieces } from '../../services/supabase-servieces';
+import { CategoriesService } from '../../services/categories-servieces';
 
 @Component({
   selector: 'app-create-page',
@@ -32,6 +33,7 @@ export class CreatePage {
   constructor(
     private router: Router,
     private supabaseService: SupabaseServieces,
+    private categoriesService: CategoriesService,
   ) {}
 
   filter = -1;
@@ -65,7 +67,13 @@ export class CreatePage {
     this.questions.splice(index, 1);
   }
 
+  getCategory() {
+    const categories = this.categoriesService.getCategories();
+    this.newSurvey.Category = categories[this.filter];
+  }
+
   async publishSurvey() {
+    this.getCategory();
     const survey = await this.supabaseService.createSurvey({
       headline: this.newSurvey.SurveyName,
       description: this.newSurvey.DescribingText,
