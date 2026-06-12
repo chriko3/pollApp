@@ -19,11 +19,6 @@ section {
     margin-top: 5px;
     margin-left: 20px;
   }
-
-  &:hover {
-    transition: all 0.25s ease;
-    background-color: rgba(53, 39, 58, 0.5);
-  }
 }
 
 .question-header {
@@ -46,7 +41,8 @@ section {
     display: flex;
     align-items: center;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: start;
     margin-bottom: 5px;
+    gap: 10px;
   }
 }

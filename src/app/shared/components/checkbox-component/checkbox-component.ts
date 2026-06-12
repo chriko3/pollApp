@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CheckboxComponent {
   @Input() answer: string = '';
+  @Input() borderColor = '#000000'
   answers: any = null;
   checkedCheckbox = false;
   constructor(

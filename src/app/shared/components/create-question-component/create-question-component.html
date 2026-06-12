@@ -10,7 +10,7 @@
   <div class="question-body">
     <div>
       <p>Answers</p>
-      <app-checkbox-component>Allow multiple answers</app-checkbox-component>
+      <app-checkbox-component borderColor="#FFFFF0">Allow multiple answers</app-checkbox-component>
     </div>
     @for (item of questions; track item; let i = $index) {
       <div>
@@ -20,9 +20,13 @@
           (valueChanged)="onChildChange($event)"
         >
         </app-input-field-component>
-        <app-delete-button-component (click)="deleteQuestion(i)"></app-delete-button-component>
+        @if (i >= 2) {
+          <app-delete-button-component (click)="deleteQuestion(i)"></app-delete-button-component>
+        }
       </div>
     }
-    <app-tertiary-button-component (click)="addQuestion()"></app-tertiary-button-component>
+    @if (questions.length < 5) {
+      <app-tertiary-button-component (click)="addQuestion()"> </app-tertiary-button-component>
+    }
   </div>
 </section>
