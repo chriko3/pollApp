@@ -109,10 +109,12 @@ export class CreatePage {
             answer_text: answer,
           });
         }
-        console.log('db');
+        this.showOverlay();
       }
     }
   }
+
+  showOverlay() {}
 
   onInputChange(event: { field: string; value: string }) {
     if (event.field === 'SurveyName') {
