@@ -11,6 +11,7 @@ export class InputFieldComponent {
   @Input() fieldName: string = '';
   @Input() height = 25;
   @Input() minwidth =  330;
+  @Input() value = "";
   
   @Output() valueChanged = new EventEmitter<{ field: string; value: string }>();
 

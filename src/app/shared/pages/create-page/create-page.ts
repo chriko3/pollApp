@@ -45,6 +45,11 @@ export class CreatePage {
     Category: '',
   };
 
+  clear() {
+    this.newSurvey.DescribingText = '';
+    
+  }
+
   onCategorySelected(id: number) {
     this.filter = id;
   }

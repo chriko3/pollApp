@@ -42,8 +42,9 @@
             <app-input-field-component
               class="width430"
               [height]="85"
+              [value]="newSurvey.DescribingText"
             ></app-input-field-component>
-            <app-delete-button-component></app-delete-button-component>
+            <app-delete-button-component (click)="clear()"></app-delete-button-component>
           </div>
         </div>
       </div>
