@@ -15,6 +15,7 @@
           <p>Survey name</p>
           <div>
             <app-input-field-component
+              class="width430"
               fieldName="SurveyName"
               (valueChanged)="onInputChange($event)"
             ></app-input-field-component>
@@ -24,20 +25,23 @@
           <p>Set end date (optional)</p>
           <div>
             <app-input-field-component
+              [minwidth]="140"
               fieldName="SetEndDate"
               (valueChanged)="onInputChange($event)"
             ></app-input-field-component>
             <app-delete-button-component></app-delete-button-component>
-            <app-drop-down-component (categorySelected)="onCategorySelected($event)">Choose category</app-drop-down-component>
+            <app-drop-down-component (categorySelected)="onCategorySelected($event)"
+              >Choose category</app-drop-down-component
+            >
           </div>
         </div>
 
         <div>
           <p>Describing text (optional)</p>
-          <div>
+          <div class="describing">
             <app-input-field-component
-              fieldName="DescribingText"
-              (valueChanged)="onInputChange($event)"
+              class="width430"
+              [height]="85"
             ></app-input-field-component>
             <app-delete-button-component></app-delete-button-component>
           </div>

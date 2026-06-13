@@ -1,1 +1,8 @@
-<input [placeholder]="placeholder" spellcheck="false" type="text" (input)="onChange($event.target.value)">
+<input
+  [placeholder]="placeholder"
+  spellcheck="false"
+  type="text"
+  (input)="onChange($event.target.value)"
+  [style.height.px]="height"
+  [style.min-width.px]="minwidth"
+/>
