@@ -41,13 +41,12 @@ export class CreatePage {
   newSurvey = {
     SurveyName: '',
     DescribingText: '',
-    SetEndDate: 0,
+    SetEndDate: 10,
     Category: '',
   };
 
   clear() {
     this.newSurvey.DescribingText = '';
-    
   }
 
   onCategorySelected(id: number) {
@@ -79,26 +78,38 @@ export class CreatePage {
 
   async publishSurvey() {
     this.getCategory();
-    const survey = await this.supabaseService.createSurvey({
-      headline: this.newSurvey.SurveyName,
-      description: this.newSurvey.DescribingText,
-      endsDay: this.newSurvey.SetEndDate,
-      category: this.newSurvey.Category,
-    });
-
-    for (let i = 0; i < this.questions.length; i++) {
-      const question = await this.supabaseService.createQuestion({
-        survey_id: survey.id,
-        multiple_choice: this.questions[i].multiple_choice,
-        question_headline: this.questions[i].question_headline,
+    if (this.newSurvey.SurveyName != '' && this.newSurvey.Category != '') {
+      for (let i = 0; i < this.questions.length; i++) {
+        if (
+          this.questions[i].question_headline.trim() === '' ||
+          this.questions[i].answers.length === 0 ||
+          this.questions[i].answers.some((a) => a.trim() === '')
+        ) {
+          return;
+        }
+      }
+      const survey = await this.supabaseService.createSurvey({
+        headline: this.newSurvey.SurveyName,
+        description: this.newSurvey.DescribingText,
+        endsDay: this.newSurvey.SetEndDate,
+        category: this.newSurvey.Category,
       });
 
-      for (const answer of this.questions[i].answers) {
-        await this.supabaseService.createAnswer({
+      for (let i = 0; i < this.questions.length; i++) {
+        const question = await this.supabaseService.createQuestion({
           survey_id: survey.id,
-          question_id: question.id,
-          answer_text: answer,
+          multiple_choice: this.questions[i].multiple_choice,
+          question_headline: this.questions[i].question_headline,
         });
+
+        for (const answer of this.questions[i].answers) {
+          await this.supabaseService.createAnswer({
+            survey_id: survey.id,
+            question_id: question.id,
+            answer_text: answer,
+          });
+        }
+        console.log('db');
       }
     }
   }

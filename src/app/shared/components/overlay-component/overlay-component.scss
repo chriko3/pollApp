@@ -1,0 +1,17 @@
+section {
+  width: 357px;
+  height: 86px;
+  background-color: var(--background-color-light-yellow);
+  border-radius: 5px;
+  border-top-right-radius: 50px;
+  box-sizing: border-box;
+  padding: 14px 60px 14px 20px;
+  display: flex;
+  align-items: start;
+  div {
+    font-family: var(--font-family-NerkoOne);
+    font-size: var(--font-size-24);
+    font-weight: var(--font-weight-400);
+    color: var(--font-color-dark-purple);
+  }
+}
