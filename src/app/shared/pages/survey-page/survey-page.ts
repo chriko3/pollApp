@@ -35,6 +35,10 @@ export class SurveyPage {
   answers: any = null;
   counters: number[] = [];
 
+  /**
+   * Loads survey data on start.
+   * Builds statistics and subscribes to updates.
+   */
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
 
@@ -50,12 +54,19 @@ export class SurveyPage {
     });
   }
 
+  /**
+   * Reloads answer statistics from database.
+   */
   async loadStatisticsFromDB() {
     this.answers = await this.supabaseService.getAnswersById(this.survey.id);
     this.buildCounters();
     this.cdr.detectChanges();
   }
 
+  /**
+   * Builds counter array from answers.
+   * Sums clicked values per question.
+   */
   buildCounters() {
     this.counters = [];
 
@@ -69,14 +80,24 @@ export class SurveyPage {
     }
   }
 
+  /**
+   * Navigates to home page.
+   */
   goHome() {
     this.goto.goToHome();
   }
 
+  /**
+   * Navigates to create page.
+   */
   goCreate() {
     this.goto.goToCreate();
   }
 
+  /**
+   * Calculates survey end date.
+   * Returns formatted string.
+   */
   getEndDate() {
     const endDay = new Date();
     endDay.setDate(new Date().getDate() + this.survey.endsDay);

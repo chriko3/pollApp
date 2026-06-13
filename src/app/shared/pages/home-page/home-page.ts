@@ -43,6 +43,10 @@ export class HomePage {
     private cdr: ChangeDetectorRef,
   ) {}
 
+  /**
+   * Loads surveys on page start.
+   * Sorts and selects top ending soon surveys.
+   */
   async ngOnInit() {
     this.surveys = await this.supabaseService.getSurveys();
     this.surveysEndingSoon = this.surveys
@@ -52,18 +56,30 @@ export class HomePage {
     this.cdr.detectChanges();
   }
 
+  /**
+   * Sets selected category filter.
+   */
   onCategorySelected(id: number) {
     this.filter = id;
   }
 
+  /**
+   * Opens survey detail page.
+   */
   openPage(id: number) {
     this.router.navigate(['/survey', id]);
   }
 
+  /**
+   * Navigates to create page.
+   */
   goCreate() {
     this.goto.goToCreate();
   }
 
+  /**
+   * Toggles between active and past surveys.
+   */
   activeOrPastSurvey() {
     this.activeSurveyFilter = !this.activeSurveyFilter;
     this.pastSurveyFilter = !this.activeSurveyFilter;

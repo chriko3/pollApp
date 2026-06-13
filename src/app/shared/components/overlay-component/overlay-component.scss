@@ -8,10 +8,22 @@ section {
   padding: 14px 60px 14px 20px;
   display: flex;
   align-items: start;
+    opacity: 0;
+  transform: translateY(-10px);
+
   div {
     font-family: var(--font-family-NerkoOne);
     font-size: var(--font-size-24);
     font-weight: var(--font-weight-400);
     color: var(--font-color-dark-purple);
   }
+  svg {
+    cursor: pointer;
+  }
+  transition: all 0.25s ease;
+}
+
+section.show {
+  opacity: 1;
+  transform: translateY(0);
 }

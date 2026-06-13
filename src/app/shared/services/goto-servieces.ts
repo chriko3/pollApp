@@ -5,11 +5,18 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class GotoServieces {
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
+
+  /**
+   * Navigates to home page.
+   */
   goToHome() {
     this.router.navigate(['/']);
   }
 
+  /**
+   * Navigates to create page.
+   */
   goToCreate() {
     this.router.navigate(['/create']);
   }

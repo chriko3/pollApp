@@ -1,9 +1,13 @@
 <input
   [placeholder]="placeholder"
   spellcheck="false"
-  type="text"
+  [type]="type"
   (input)="onChange($event.target.value)"
   [style.height.px]="height"
   [style.min-width.px]="minwidth"
   [value]="value"
+  [attr.maxlength]="maxLength"
+  min="0"
+  (keydown)="onKeyDown($event)"
+  (input)="onChange($event.target.value)"
 />

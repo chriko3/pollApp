@@ -12,19 +12,28 @@ export class QuestionAnswerComponent {
   @Input() questionNumber = 1;
   @Input() questionTitle = '';
   @Input() questionMoreAnswers = true;
-
   @Input() questions: { text: string }[] = [];
+  selectedAnswer: string | null = null;
 
-   constructor(
-    private supabaseService: SupabaseServieces
-  ) {}
+  /**
+   * Creates the component.
+   * Uses Supabase service.
+   */
+  constructor(private supabaseService: SupabaseServieces) {}
 
+  /**
+   * Converts number to letter.
+   * 0 becomes A, 1 becomes B, etc.
+   */
   getLetterFromNumber(i: number) {
     return String.fromCharCode(65 + i);
   }
 
-  selectedAnswer: string | null = null;
-
+  /**
+   * Handles single answer selection.
+   * Removes previous selection in database.
+   * Sets new selected answer.
+   */
   onSingleAnswerSelected(answer: string | null) {
     if (this.selectedAnswer !== null && this.selectedAnswer !== answer) {
       this.supabaseService.updatedClickedAnswerInDB(this.selectedAnswer, false);

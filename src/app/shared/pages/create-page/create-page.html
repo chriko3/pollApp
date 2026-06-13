@@ -18,6 +18,7 @@
               class="width430"
               fieldName="SurveyName"
               (valueChanged)="onInputChange($event)"
+              [maxLength]="30"
             ></app-input-field-component>
             <app-delete-button-component></app-delete-button-component>
           </div>
@@ -28,6 +29,8 @@
               [minwidth]="140"
               fieldName="SetEndDate"
               (valueChanged)="onInputChange($event)"
+              [type]="'number'"
+              [maxLength]="3"
             ></app-input-field-component>
             <app-delete-button-component></app-delete-button-component>
             <app-drop-down-component (categorySelected)="onCategorySelected($event)"
@@ -43,6 +46,7 @@
               class="width430"
               [height]="85"
               [value]="newSurvey.DescribingText"
+              [maxLength]="500"
             ></app-input-field-component>
             <app-delete-button-component (click)="clear()"></app-delete-button-component>
           </div>
@@ -74,4 +78,11 @@
       >
     </div>
   </section>
+
+  <div class="overlay">
+    <app-overlay-component
+      [published]="published"
+      (close)="published = false"
+    ></app-overlay-component>
+  </div>
 </div>

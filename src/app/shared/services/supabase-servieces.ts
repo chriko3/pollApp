@@ -9,6 +9,10 @@ export class SupabaseServieces {
     'https://yulegzglfgzllxfnvknx.supabase.co',
     'sb_publishable_9kmgTaT3EPexaCCJZRWaSw_wICL-zUj',
   );
+
+  /**
+   * Gets all surveys from database.
+   */
   async getSurveys() {
     const { data, error } = await this.supabase.from('surveys').select('*');
 
@@ -20,11 +24,17 @@ export class SupabaseServieces {
     return data;
   }
 
+  /**
+   * Gets one survey by id.
+   */
   async getSurveyById(id: number) {
     const { data, error } = await this.supabase.from('surveys').select('*').eq('id', id).single();
     return data;
   }
 
+  /**
+   * Gets questions for a survey.
+   */
   async getQuestionsById(id: number) {
     const { data, error } = await this.supabase
       .from('questions')
@@ -34,6 +44,9 @@ export class SupabaseServieces {
     return data;
   }
 
+  /**
+   * Gets answers for a survey.
+   */
   async getAnswersById(survey_id: number) {
     const { data, error } = await this.supabase
       .from('answers')
@@ -44,6 +57,10 @@ export class SupabaseServieces {
     return data;
   }
 
+  /**
+   * Updates clicked count for an answer.
+   * Adds or removes one click.
+   */
   async updatedClickedAnswerInDB(answerText: string, add: boolean) {
     const { data } = await this.supabase
       .from('answers')
@@ -57,6 +74,9 @@ export class SupabaseServieces {
       .eq('answer_text', answerText);
   }
 
+  /**
+   * Subscribes to realtime changes in answers table.
+   */
   subscribeAnswers(callback: (payload: any) => void) {
     return this.supabase
       .channel('custom-all-channel')
@@ -74,6 +94,9 @@ export class SupabaseServieces {
       .subscribe();
   }
 
+  /**
+   * Creates a new survey.
+   */
   async createSurvey(survey: {
     category: string;
     headline: string;
@@ -85,6 +108,9 @@ export class SupabaseServieces {
     return data;
   }
 
+  /**
+   * Creates a new question.
+   */
   async createQuestion(question: {
     survey_id: string;
     multiple_choice: boolean;
@@ -99,6 +125,9 @@ export class SupabaseServieces {
     return data;
   }
 
+  /**
+   * Creates a new answer.
+   */
   async createAnswer(answer: { survey_id: string; question_id: string; answer_text: string }) {
     const { error } = await this.supabase.from('answers').insert(answer);
     if (error) console.error(error);

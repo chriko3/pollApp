@@ -28,26 +28,46 @@ export class CreateQuestionComponent {
     answers: ['', ''],
   };
 
+  /**
+   * Emits destroy event.
+   * Used to remove this section.
+   */
   destroySection() {
     this.destroy.emit();
   }
 
+  /**
+   * Forwards changes from child component.
+   * Sends event to parent.
+   */
   onChildChange(event: { field: string; value: string }) {
     this.valueChanged.emit(event);
   }
 
+  /**
+   * Adds a new question index.
+   * Limit is 5 questions.
+   */
   addQuestion() {
     if (this.questions.length < 5) {
       this.questions.push(this.questions.length + 1);
     }
   }
 
+  /**
+   * Removes a question by index.
+   * Only allows removal if index is 2 or higher.
+   */
   deleteQuestion(i: number) {
     if (i >= 2) {
       this.questions.splice(i, 1);
     }
   }
 
+  /**
+   * Converts number to letter.
+   * 0 becomes A, 1 becomes B, etc.
+   */
   getLetterFromNumber(i: number) {
     return String.fromCharCode(65 + i);
   }

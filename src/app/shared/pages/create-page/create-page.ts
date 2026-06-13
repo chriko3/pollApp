@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { SurveryStatusComponent } from '../../components/survery-status-component/survery-status-component';
 import { SecondaryButtonComponent } from '../../components/secondary-button-component/secondary-button-component';
 import { PrimaryButtonComponent } from '../../components/primary-button-component/primary-button-component';
@@ -11,6 +11,7 @@ import { HighlightCardComponent } from '../../components/highlight-card-componen
 import { CreateQuestionComponent } from '../../components/create-question-component/create-question-component';
 import { SupabaseServieces } from '../../services/supabase-servieces';
 import { CategoriesService } from '../../services/categories-servieces';
+import { OverlayComponent } from '../../components/overlay-component/overlay-component';
 
 @Component({
   selector: 'app-create-page',
@@ -25,6 +26,7 @@ import { CategoriesService } from '../../services/categories-servieces';
     DropDownComponent,
     HighlightCardComponent,
     CreateQuestionComponent,
+    OverlayComponent,
   ],
   templateUrl: './create-page.html',
   styleUrl: './create-page.scss',
@@ -34,9 +36,12 @@ export class CreatePage {
     private router: Router,
     private supabaseService: SupabaseServieces,
     private categoriesService: CategoriesService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   filter = -1;
+
+  published = false;
 
   newSurvey = {
     SurveyName: '',
@@ -45,37 +50,61 @@ export class CreatePage {
     Category: '',
   };
 
-  clear() {
-    this.newSurvey.DescribingText = '';
-  }
-
-  onCategorySelected(id: number) {
-    this.filter = id;
-  }
-
-  goToHome() {
-    this.router.navigate(['/']);
-  }
-
   questions: { question_headline: string; multiple_choice: boolean; answers: string[] }[] = [
     { question_headline: '', multiple_choice: false, answers: [] },
   ];
 
+  /**
+   * Clears description text.
+   */
+  clear() {
+    this.newSurvey.DescribingText = '';
+  }
+
+  /**
+   * Sets selected category index.
+   */
+  onCategorySelected(id: number) {
+    this.filter = id;
+  }
+
+  /**
+   * Navigates back to home page.
+   */
+  goToHome() {
+    this.router.navigate(['/']);
+  }
+
+  /**
+   * Adds a new question.
+   * Limit is 10 questions.
+   */
   addQuestion() {
     if (this.questions.length < 10) {
       this.questions.push({ question_headline: '', multiple_choice: false, answers: [] });
     }
   }
 
+  /**
+   * Removes a question.
+   */
   removeSection(index: number) {
     this.questions.splice(index, 1);
   }
 
+  /**
+   * Sets category name from index.
+   */
   getCategory() {
     const categories = this.categoriesService.getCategories();
     this.newSurvey.Category = categories[this.filter];
   }
 
+  /**
+   * Publishes survey to database.
+   * Validates input first.
+   * Creates survey, questions and answers.
+   */
   async publishSurvey() {
     this.getCategory();
     if (this.newSurvey.SurveyName != '' && this.newSurvey.Category != '') {
@@ -109,13 +138,27 @@ export class CreatePage {
             answer_text: answer,
           });
         }
+        this.published = true;
         this.showOverlay();
       }
     }
   }
 
-  showOverlay() {}
+  /**
+   * Shows overlay after publishing.
+   * Hides it after 3.5 seconds.
+   */
+  showOverlay() {
+    setTimeout(() => {
+      this.published = false;
+      console.log(this.published);
+      this.cdr.detectChanges();
+    }, 3500);
+  }
 
+  /**
+   * Updates form fields from child components.
+   */
   onInputChange(event: { field: string; value: string }) {
     if (event.field === 'SurveyName') {
       this.newSurvey.SurveyName = event.value;

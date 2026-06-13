@@ -9,6 +9,10 @@ import { Component, Input } from '@angular/core';
 export class FilterButtonComponent {
   @Input() isClicked?: Boolean;
 
+  /**
+   * Toggles background color state.
+   * Switches between active and inactive.
+   */
   changeBgColor() {
     this.isClicked = !this.isClicked;
   }
