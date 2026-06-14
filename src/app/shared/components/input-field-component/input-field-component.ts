@@ -25,6 +25,10 @@ export class InputFieldComponent {
     this.valueChanged.emit({ field: this.fieldName, value });
   }
 
+  /**
+   * Blocks invalid keyboard input for number fields.
+   * Allows only digits and navigation keys.
+   */
   onKeyDown(event: KeyboardEvent) {
     if (this.type !== 'number') return;
 

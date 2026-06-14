@@ -2,18 +2,20 @@
   <app-header-component [logoColor]="'light'"></app-header-component>
 
   <section class="infoSection">
+    <p>
+      Collect Feedback, <br />
+      Unlock Ideas
+    </p>
     <div class="infoSection-left">
-      <p>
-        Collect Feedback, <br />
-        Unlock Ideas
-      </p>
       <p>
         Create and share surveys in minutes – from team events to workplace culture. Collect
         opinions, engage your audience, and turn feedback into action.
       </p>
-      <app-primary-button-component (click)="goCreate()" [icon]="'add'"
-        >New Survey</app-primary-button-component
-      >
+      <div>
+        <app-primary-button-component (click)="goCreate()" [icon]="'add'"
+          >New Survey</app-primary-button-component
+        >
+      </div>
     </div>
 
     <div class="infoSection-right">
