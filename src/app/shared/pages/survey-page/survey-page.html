@@ -7,6 +7,8 @@
       >
     </div>
 
+    <div class="swrapper">
+    
     <section class="survey-answer-container">
       <div class="survey-answers">
         <div class="survey-answer-info">
@@ -35,26 +37,28 @@
           }
         </div>
       </div>
+    </section>
 
-      <div class="survey-results">
-        <div class="survey-results-headline">
-          <p>Survey results <span>LIVE</span></p>
-        </div>
-        <div class="survey-results-all">
-          @for (item of questions; track item; let i = $index) {
-            <app-results-component
-              [question]="i + 1 + '. ' + item.question_headline"
-              [bars]="
-                answers
-                  .filter((a) => a.question_id === item.id)
-                  .map((a) => ({
-                    percentage: counters[item.id] ? (a.clicked / counters[item.id]) * 100 : 0,
-                  }))
-              "
-            ></app-results-component>
-          }
-        </div>
+    <section class="survey-results">
+      <div class="survey-results-headline">
+        <p>Survey results <span>LIVE</span></p>
+      </div>
+      <div class="survey-results-all">
+        @for (item of questions; track item; let i = $index) {
+          <app-results-component
+            [question]="i + 1 + '. ' + item.question_headline"
+            [bars]="
+              answers
+                .filter((a) => a.question_id === item.id)
+                .map((a) => ({
+                  percentage: counters[item.id] ? (a.clicked / counters[item.id]) * 100 : 0,
+                }))
+            "
+          ></app-results-component>
+        }
       </div>
     </section>
+
+    </div>
   </div>
 }
