@@ -8,6 +8,7 @@ import { AnswearComponent } from '../../components/answear-component/answear-com
 import { ActivatedRoute } from '@angular/router';
 import { SupabaseServieces } from '../../services/supabase-servieces';
 import { ResultsComponent } from '../../components/results-component/results-component';
+import { DropDownComponent } from '../../components/drop-down-component/drop-down-component';
 
 @Component({
   selector: 'app-survey-page',
@@ -18,6 +19,7 @@ import { ResultsComponent } from '../../components/results-component/results-com
     QuestionAnswerComponent,
     AnswearComponent,
     ResultsComponent,
+    DropDownComponent,
   ],
   templateUrl: './survey-page.html',
   styleUrl: './survey-page.scss',
@@ -34,6 +36,8 @@ export class SurveyPage {
   questions: any = null;
   answers: any = null;
   counters: number[] = [];
+
+  responsivOpenCloseToggle = true;
 
   /**
    * Loads survey data on start.
@@ -52,6 +56,10 @@ export class SurveyPage {
     this.supabaseService.subscribeAnswers((payload) => {
       this.loadStatisticsFromDB();
     });
+  }
+
+  toggle() {
+    this.responsivOpenCloseToggle = !this.responsivOpenCloseToggle;
   }
 
   /**

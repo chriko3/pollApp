@@ -51,7 +51,7 @@
 
   <section class="yourSurveys">
     <div class="yourSurveysHeadline">
-      <p>Your survey</p>
+      <p>Your surveys</p>
     </div>
 
     <div class="yourSurveysInfoText">
@@ -64,7 +64,7 @@
           (click)="openPage(item.id)"
           [titel]="item.category"
           [description]="item.headline"
-          [dayText]="'Ends in ' + item.endsDay + ' Day(s)'"
+          [dayText]="'Ends in ' + item.endsDay + (item.endsDay <= 1 ? ' Day' : ' Days')"
         >
         </app-highlight-card-component>
       }
@@ -104,7 +104,9 @@
             [titel]="item.category"
             [description]="item.headline"
             [dayText]="
-              activeSurveyFilter ? 'Ends in ' + item.endsDay + ' Day(s)' : 'Survey is closed'
+              activeSurveyFilter
+                ? 'Ends in ' + item.endsDay + (item.endsDay <= 1 ? ' Day' : ' Days')
+                : 'Survey is closed'
             "
           >
             >

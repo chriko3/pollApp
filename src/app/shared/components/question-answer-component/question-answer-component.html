@@ -11,7 +11,7 @@
           [checkedCheckbox]="!questionMoreAnswers && selectedAnswer === item.text"
           (checkedChange)="!questionMoreAnswers ? onSingleAnswerSelected($event) : null"
         >
-          <p>{{ getLetterFromNumber(i) }}. {{ item.text }}</p>
+          <p><span>{{ getLetterFromNumber(i) }}. </span>{{ item.text }}</p>
         </app-checkbox-component>
       </div>
     }

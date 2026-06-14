@@ -40,6 +40,10 @@ section {
       margin-left: 10px;
       font-size: var(--font-size-16) !important;
       font-weight: var(--font-weight-400) !important;
+
+      span{
+        font-weight: var(--font-weight-700);
+      }
     }
   }
 }

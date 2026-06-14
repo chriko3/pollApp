@@ -14,7 +14,10 @@ export class SupabaseServieces {
    * Gets all surveys from database.
    */
   async getSurveys() {
-    const { data, error } = await this.supabase.from('surveys').select('*');
+    const { data, error } = await this.supabase
+      .from('surveys')
+      .select('*')
+      .order('id', { ascending: true });
 
     if (error) {
       console.error(error);
