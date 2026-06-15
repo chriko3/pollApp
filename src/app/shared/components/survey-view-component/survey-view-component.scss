@@ -84,6 +84,11 @@ button {
         margin-top: 15px;
       }
     }
+  }
+}
 
+@media (max-width: 340px) {
+  button {
+    scale: 0.9;
   }
 }

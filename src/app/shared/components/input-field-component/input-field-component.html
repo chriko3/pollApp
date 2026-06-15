@@ -1,13 +1,10 @@
-<input
+<textarea
   [value]="value"
   [placeholder]="placeholder"
   spellcheck="false"
-  [type]="type"
-  (input)="onChange($event.target.value)"
+  (input)="onInput($event)"
   [style.height.px]="height"
   [style.min-width.px]="minwidth"
   [attr.maxlength]="maxLength"
-  min="0"
   (keydown)="onKeyDown($event)"
-  (input)="onChange($event.target.value)"
-/>
+></textarea>

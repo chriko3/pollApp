@@ -21,6 +21,10 @@ section {
   }
 }
 
+
+app-checkbox-component ::ng-deep p {
+  font-size: var(--font-size-12);
+}
 .question-header {
   display: flex;
   align-items: center;
@@ -52,6 +56,6 @@ app-input-field-component {
   display: block;
 }
 
-.answerInput{
+.answerInput {
   width: 90%;
 }

@@ -1,7 +1,6 @@
-input {
+textarea {
   width: 100%;
-  //min-width: 330px;
-  height: 25px;
+  height: 50px;
   background-color: white;
   border-radius: var(--border-radius-5);
   border-top-right-radius: var(--border-radius-20);
@@ -11,7 +10,9 @@ input {
   font-size: var(--font-size-16);
   color: var(--font-color-dark-purple);
   transition: var(--transition-smooth-and-bg-025);
-
+  resize: none;
+  box-sizing: border-box;
+  overflow-y: hidden;
   &:focus {
     outline: none;
     background-color: var(--background-color-light-yellow);

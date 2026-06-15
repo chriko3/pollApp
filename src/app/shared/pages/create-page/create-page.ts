@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, HostListener } from '@angular/core';
 import { SurveryStatusComponent } from '../../components/survery-status-component/survery-status-component';
 import { SecondaryButtonComponent } from '../../components/secondary-button-component/secondary-button-component';
 import { PrimaryButtonComponent } from '../../components/primary-button-component/primary-button-component';
@@ -12,6 +12,7 @@ import { CreateQuestionComponent } from '../../components/create-question-compon
 import { SupabaseServieces } from '../../services/supabase-servieces';
 import { CategoriesService } from '../../services/categories-servieces';
 import { OverlayComponent } from '../../components/overlay-component/overlay-component';
+import { GotoServieces } from '../../services/goto-servieces';
 
 @Component({
   selector: 'app-create-page',
@@ -37,6 +38,7 @@ export class CreatePage {
     private supabaseService: SupabaseServieces,
     private categoriesService: CategoriesService,
     private cdr: ChangeDetectorRef,
+    private goto: GotoServieces,
   ) {}
 
   filter = -1;
@@ -56,6 +58,23 @@ export class CreatePage {
 
   onCheck(value: boolean, index: number) {
     this.questions[index].multiple_choice = value;
+  }
+
+  screenWidth = window.innerWidth;
+
+  /**
+   * Check window width
+   */
+  @HostListener('window:resize')
+  onResize() {
+    this.screenWidth = window.innerWidth;
+  }
+
+  /**
+   * Navigates to home page.
+   */
+  goHome() {
+    this.goto.goToHome();
   }
 
   /**
@@ -168,14 +187,15 @@ export class CreatePage {
 
   /**
    * Shows overlay after publishing.
-   * Hides it after 3.5 seconds.
+   * Hides it after 4 seconds.
    */
   showOverlay() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => {
       this.published = false;
       console.log(this.published);
       this.cdr.detectChanges();
-    }, 3500);
+    }, 4000);
   }
 
   /**

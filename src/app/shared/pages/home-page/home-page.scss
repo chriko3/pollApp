@@ -21,7 +21,7 @@
     font-family: var(--font-family-NerkoOne);
     font-size: var(--font-size-100);
     color: var(--background-color-deep-yellow);
-    line-height: 75px;
+    line-height: 55px;
     margin: 0px;
   }
 }
@@ -228,7 +228,7 @@
   }
 
   .yourSurveys {
-    margin-top: 450px;
+    margin-top: 550px;
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 50px;
@@ -272,5 +272,12 @@
 
   .allSurveysList {
     grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .infoSection-right {
+    scale: 0.8;
   }
 }

@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  overflow-x: hidden;
 }
 
 .survey-header {
@@ -181,6 +182,10 @@
     }
   }
 
+  .survey-answer-container{
+    justify-content: center;
+  }
+
   .survey-answer-list {
     grid-template-columns: 1fr;
     overflow-y: auto;
@@ -201,6 +206,7 @@
 
   .survey-results {
     margin-top: 50px;
+    margin-left: 15px
   }
 
   .survey-results-all {

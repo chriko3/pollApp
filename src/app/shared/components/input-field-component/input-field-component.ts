@@ -9,7 +9,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class InputFieldComponent {
   @Input() placeholder: string = '';
   @Input() fieldName: string = '';
-  @Input() height = 25;
+  @Input() height = 40;
   @Input() minwidth = 100;
   @Input() maxLength = 25;
   @Input() type = 'text';
@@ -45,4 +45,9 @@ export class InputFieldComponent {
       event.preventDefault();
     }
   }
+
+  onInput(event: Event) {
+  const value = (event.target as HTMLTextAreaElement).value;
+  this.onChange(value);
+}
 }
