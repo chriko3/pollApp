@@ -46,24 +46,13 @@ export class CreatePage {
   newSurvey = {
     SurveyName: '',
     DescribingText: '',
-    SetEndDate: 10,
+    SetEndDate: 5,
     Category: '',
   };
 
   questions: { question_headline: string; multiple_choice: boolean; answers: string[] }[] = [
     { question_headline: '', multiple_choice: false, answers: [] },
   ];
-
-  onCheckboxChange(isChecked: boolean) {
-    console.log('Checkbox ist jetzt:', isChecked); // true oder false
-
-    // Hier kannst du mit dem Wert arbeiten:
-    if (isChecked) {
-      // wurde angehakt
-    } else {
-      // wurde abgehakt
-    }
-  }
 
   onCheck(value: boolean, index: number) {
     this.questions[index].multiple_choice = value;
@@ -72,8 +61,15 @@ export class CreatePage {
   /**
    * Clears description text.
    */
-  clear() {
-    this.newSurvey.DescribingText = '';
+
+  deleteValue(field: string) {
+    if (field === 'SurveyName') {
+      this.newSurvey.SurveyName = '';
+    } else if (field === 'DescribingText') {
+      this.newSurvey.DescribingText = '';
+    } else if (field === 'SetEndDate') {
+      this.newSurvey.SetEndDate = 0;
+    }
   }
 
   /**
@@ -134,30 +130,40 @@ export class CreatePage {
       }
       this.published = true;
       this.showOverlay();
+      this.saveToDB();
+    }
+  }
 
-      const survey = await this.supabaseService.createSurvey({
-        headline: this.newSurvey.SurveyName,
-        description: this.newSurvey.DescribingText,
-        endsDay: this.newSurvey.SetEndDate,
-        category: this.newSurvey.Category,
+  async saveToDB() {
+    const survey = await this.supabaseService.createSurvey({
+      headline: this.newSurvey.SurveyName,
+      description: this.newSurvey.DescribingText,
+      endsDay: this.newSurvey.SetEndDate,
+      category: this.newSurvey.Category,
+    });
+    for (let i = 0; i < this.questions.length; i++) {
+      const question = await this.supabaseService.createQuestion({
+        survey_id: survey.id,
+        multiple_choice: this.questions[i].multiple_choice,
+        question_headline: this.questions[i].question_headline,
       });
 
-      for (let i = 0; i < this.questions.length; i++) {
-        const question = await this.supabaseService.createQuestion({
+      for (const answer of this.questions[i].answers) {
+        await this.supabaseService.createAnswer({
           survey_id: survey.id,
-          multiple_choice: this.questions[i].multiple_choice,
-          question_headline: this.questions[i].question_headline,
+          question_id: question.id,
+          answer_text: answer,
         });
-
-        for (const answer of this.questions[i].answers) {
-          await this.supabaseService.createAnswer({
-            survey_id: survey.id,
-            question_id: question.id,
-            answer_text: answer,
-          });
-        }
       }
     }
+    this.resetCreateSurvey();
+  }
+
+  /**
+   * Reset the create survey page
+   */
+  resetCreateSurvey() {
+    location.reload();
   }
 
   /**

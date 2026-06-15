@@ -15,26 +15,36 @@
           <p>Survey name</p>
           <div>
             <app-input-field-component
+              [value]="newSurvey.SurveyName"
               fieldName="SurveyName"
               (valueChanged)="onInputChange($event)"
               [maxLength]="30"
             ></app-input-field-component>
-            <app-delete-button-component></app-delete-button-component>
+            <app-delete-button-component
+              (click)="deleteValue('SurveyName')"
+            ></app-delete-button-component>
           </div>
 
           <p>Set end date (optional)</p>
-          <div>
-            <app-input-field-component
-              [minwidth]="120"
-              fieldName="SetEndDate"
-              (valueChanged)="onInputChange($event)"
-              [type]="'number'"
-              [maxLength]="3"
-            ></app-input-field-component>
-            <app-delete-button-component></app-delete-button-component>
-            <app-drop-down-component (categorySelected)="onCategorySelected($event)"
-              >Choose category</app-drop-down-component
-            >
+          <div class="field-row">
+            <div class="input-with-delete">
+              <app-input-field-component
+                [value]="newSurvey.SetEndDate.toString()"
+                [minwidth]="120"
+                fieldName="SetEndDate"
+                (valueChanged)="onInputChange($event)"
+                [type]="'number'"
+                [maxLength]="3"
+              ></app-input-field-component>
+
+              <app-delete-button-component
+                (click)="deleteValue('SetEndDate')"
+              ></app-delete-button-component>
+            </div>
+
+            <app-drop-down-component (categorySelected)="onCategorySelected($event)">
+              Choose category
+            </app-drop-down-component>
           </div>
         </div>
 
@@ -42,12 +52,15 @@
           <p>Describing text (optional)</p>
           <div class="describing">
             <app-input-field-component
+              [value]="newSurvey.DescribingText"
               [height]="85"
               [maxLength]="500"
               fieldName="DescribingText"
               (valueChanged)="onInputChange($event)"
             ></app-input-field-component>
-            <app-delete-button-component></app-delete-button-component>
+            <app-delete-button-component
+              (click)="deleteValue('DescribingText')"
+            ></app-delete-button-component>
           </div>
         </div>
       </div>

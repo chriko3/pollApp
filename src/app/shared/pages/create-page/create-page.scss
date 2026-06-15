@@ -63,10 +63,6 @@
   }
 }
 
-.width430 {
-  width: 430px !important;
-}
-
 .describing {
   display: flex;
   align-items: start !important;
@@ -104,7 +100,6 @@ app-input-field-component {
   margin-right: 10px;
 }
 
-
 .create-main-survey-answers {
   width: 100%;
   max-height: 280px;
@@ -113,7 +108,6 @@ app-input-field-component {
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
-
 
 .create-main-bottom {
   display: flex;
@@ -137,6 +131,7 @@ app-input-field-component {
     padding-right: 16px;
     padding-top: 0px;
     margin-top: 40px;
+    overflow-x: hidden;
   }
 
   .create-main-header {
@@ -152,13 +147,22 @@ app-input-field-component {
     }
   }
 
+  app-input-field-component {
+    width: 100%;
+  }
+
   .create-main {
     padding-left: 16px;
     padding-right: 16px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: auto;
   }
 
   .create-main-survey {
     padding: 10px;
+    overflow-x: hidden;
+    height: auto;
   }
 
   .create-main-survey-settings {
@@ -166,19 +170,33 @@ app-input-field-component {
     margin-bottom: 150px;
   }
 
-  .create-main-survey-answers {
-    grid-template-columns: 1fr;
+  .field-row {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+  }
+  .input-with-delete {
     display: flex;
     align-items: center;
+    gap: 8px;
+  }
+
+  .create-main-survey-settings > div > div {
+    align-items: start;
+  }
+
+  .create-main-survey-settings > div {
+    width: 100%;
+  }
+
+  .create-main-survey-answers {
+    margin-top: 100px;
+    grid-template-columns: 1fr;
+    display: flex;
+    align-items: start;
     flex-direction: column;
     justify-content: center;
-  }
-
-  .create-main-survey-settings {
-    
-  }
-
-  .width430{
-    width: 190px !important;
+    height: 100%;
   }
 }

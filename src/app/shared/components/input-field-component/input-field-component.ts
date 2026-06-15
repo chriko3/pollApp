@@ -10,10 +10,10 @@ export class InputFieldComponent {
   @Input() placeholder: string = '';
   @Input() fieldName: string = '';
   @Input() height = 25;
-  @Input() minwidth = 330;
-  @Input() value = '';
+  @Input() minwidth = 100;
   @Input() maxLength = 25;
   @Input() type = 'text';
+  @Input() value = '';
 
   @Output() valueChanged = new EventEmitter<{ field: string; value: string }>();
 
