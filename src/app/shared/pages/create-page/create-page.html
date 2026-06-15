@@ -15,7 +15,6 @@
           <p>Survey name</p>
           <div>
             <app-input-field-component
-              class="width430"
               fieldName="SurveyName"
               (valueChanged)="onInputChange($event)"
               [maxLength]="30"
@@ -43,12 +42,12 @@
           <p>Describing text (optional)</p>
           <div class="describing">
             <app-input-field-component
-              class="width430"
               [height]="85"
-              [value]="newSurvey.DescribingText"
               [maxLength]="500"
+              fieldName="DescribingText"
+              (valueChanged)="onInputChange($event)"
             ></app-input-field-component>
-            <app-delete-button-component (click)="clear()"></app-delete-button-component>
+            <app-delete-button-component></app-delete-button-component>
           </div>
         </div>
       </div>
@@ -56,6 +55,7 @@
       <div class="create-main-survey-answers">
         @for (item of questions; track item; let i = $index) {
           <app-create-question-component
+            (checkboxChange)="onCheck($event, i)"
             (destroy)="removeSection(i)"
             (valueChanged)="onInputChange($event)"
             [questionNumber]="i + 1"

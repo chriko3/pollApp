@@ -1,5 +1,5 @@
 section {
-  max-width: 430px;
+  width: 90%;
   height: auto;
   font-family: var(--font-family-Mulish);
   font-size: var(--font-size-18);
@@ -28,6 +28,7 @@ section {
 }
 
 .question-body {
+  width: 100%;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
@@ -43,6 +44,14 @@ section {
     flex-direction: row;
     justify-content: start;
     margin-bottom: 5px;
-    gap: 10px;
+    gap: 20px;
   }
+}
+app-input-field-component {
+  min-width: 0;
+  display: block;
+}
+
+.answerInput{
+  width: 90%;
 }

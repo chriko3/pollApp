@@ -12,7 +12,7 @@ export class CheckboxComponent {
   @Input() answer: string = '';
   @Input() borderColor = '#000000';
   @Input() checkedCheckbox = false;
-  @Output() checkedChange = new EventEmitter<string | null>();
+  @Output() checkedChange = new EventEmitter<boolean>();
 
   answers: any = null;
 
@@ -43,7 +43,7 @@ export class CheckboxComponent {
    */
   changeValueOnDB(answer: string) {
     this.checkedCheckbox = !this.checkedCheckbox;
-    this.checkedChange.emit(this.checkedCheckbox ? answer : null);
+    this.checkedChange.emit(this.checkedCheckbox);
 
     for (let index = 0; index < this.answers.length; index++) {
       if (answer === this.answers[index].answer_text) {

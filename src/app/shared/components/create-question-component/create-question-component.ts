@@ -28,6 +28,8 @@ export class CreateQuestionComponent {
     answers: ['', ''],
   };
 
+  @Output() checkboxChange = new EventEmitter<boolean>();
+
   /**
    * Emits destroy event.
    * Used to remove this section.

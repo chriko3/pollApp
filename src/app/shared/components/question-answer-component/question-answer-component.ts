@@ -34,10 +34,14 @@ export class QuestionAnswerComponent {
    * Removes previous selection in database.
    * Sets new selected answer.
    */
-  onSingleAnswerSelected(answer: string | null) {
-    if (this.selectedAnswer !== null && this.selectedAnswer !== answer) {
-      this.supabaseService.updatedClickedAnswerInDB(this.selectedAnswer, false);
+  onSingleAnswerSelected(checked: boolean, answerText: string) {
+    if (!checked && this.selectedAnswer === answerText) {
+      this.selectedAnswer = null;
+    } else if (checked) {
+      if (this.selectedAnswer !== null) {
+        this.supabaseService.updatedClickedAnswerInDB(this.selectedAnswer, false);
+      }
+      this.selectedAnswer = answerText;
     }
-    this.selectedAnswer = answer;
   }
 }

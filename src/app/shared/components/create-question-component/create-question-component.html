@@ -6,18 +6,23 @@
   <app-input-field-component
     fieldName="QuestionTitle_{{ questionNumber }}"
     (valueChanged)="onChildChange($event)"
+    [maxLength]="300"
   ></app-input-field-component>
   <div class="question-body">
     <div>
       <p>Answers</p>
-      <app-checkbox-component borderColor="#FFFFF0">Allow multiple answers</app-checkbox-component>
+      <app-checkbox-component (checkedChange)="checkboxChange.emit($event)" borderColor="#FFFFF0"
+        >Allow multiple answers</app-checkbox-component
+      >
     </div>
     @for (item of questions; track item; let i = $index) {
       <div>
         <p>{{ getLetterFromNumber(i) }}.</p>
         <app-input-field-component
+          class="answerInput"
           fieldName="Answer_{{ questionNumber }}_{{ getLetterFromNumber(i) }}"
           (valueChanged)="onChildChange($event)"
+          [maxLength]="300"
         >
         </app-input-field-component>
         @if (i >= 2) {

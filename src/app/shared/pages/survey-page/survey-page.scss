@@ -111,14 +111,11 @@
 .survey-results-all {
   display: flex;
   flex-direction: column;
-  height: 90%;
+  height: auto;
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-
-  app-results-component {
-    margin-bottom: 170px;
-  }
+  gap: 200px;
 }
 
 .swrapper {

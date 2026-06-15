@@ -54,6 +54,21 @@ export class CreatePage {
     { question_headline: '', multiple_choice: false, answers: [] },
   ];
 
+  onCheckboxChange(isChecked: boolean) {
+    console.log('Checkbox ist jetzt:', isChecked); // true oder false
+
+    // Hier kannst du mit dem Wert arbeiten:
+    if (isChecked) {
+      // wurde angehakt
+    } else {
+      // wurde abgehakt
+    }
+  }
+
+  onCheck(value: boolean, index: number) {
+    this.questions[index].multiple_choice = value;
+  }
+
   /**
    * Clears description text.
    */
@@ -107,16 +122,19 @@ export class CreatePage {
    */
   async publishSurvey() {
     this.getCategory();
-    if (this.newSurvey.SurveyName != '' && this.newSurvey.Category != '') {
+    if (this.newSurvey.SurveyName != '' && this.newSurvey.Category != undefined) {
       for (let i = 0; i < this.questions.length; i++) {
         if (
           this.questions[i].question_headline.trim() === '' ||
-          this.questions[i].answers.length === 0 ||
+          this.questions[i].answers.length === 1 ||
           this.questions[i].answers.some((a) => a.trim() === '')
         ) {
           return;
         }
       }
+      this.published = true;
+      this.showOverlay();
+
       const survey = await this.supabaseService.createSurvey({
         headline: this.newSurvey.SurveyName,
         description: this.newSurvey.DescribingText,
@@ -138,8 +156,6 @@ export class CreatePage {
             answer_text: answer,
           });
         }
-        this.published = true;
-        this.showOverlay();
       }
     }
   }
