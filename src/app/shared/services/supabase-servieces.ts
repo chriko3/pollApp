@@ -81,7 +81,7 @@ export class SupabaseServieces {
    * Subscribes to realtime changes in answers table.
    */
   subscribeAnswers(callback: (payload: any) => void) {
-    return this.supabase
+    const channel = this.supabase
       .channel('custom-all-channel')
       .on(
         'postgres_changes',
@@ -90,11 +90,11 @@ export class SupabaseServieces {
           schema: 'public',
           table: 'answers',
         },
-        (payload) => {
-          callback(payload);
-        },
+        callback,
       )
       .subscribe();
+
+    return channel;
   }
 
   /**

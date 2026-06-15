@@ -1,4 +1,4 @@
-import { Component, Inject, ChangeDetectorRef } from '@angular/core';
+import { Component, Inject, ChangeDetectorRef, HostListener } from '@angular/core';
 import { HeaderComponent } from '../../components/header-component/header-component';
 import { PrimaryButtonComponent } from '../../components/primary-button-component/primary-button-component';
 import { SurveryStatusComponent } from '../../components/survery-status-component/survery-status-component';
@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SupabaseServieces } from '../../services/supabase-servieces';
 import { ResultsComponent } from '../../components/results-component/results-component';
 import { DropDownComponent } from '../../components/drop-down-component/drop-down-component';
+import { SecondaryButtonComponent } from '../../components/secondary-button-component/secondary-button-component';
 
 @Component({
   selector: 'app-survey-page',
@@ -20,6 +21,7 @@ import { DropDownComponent } from '../../components/drop-down-component/drop-dow
     AnswearComponent,
     ResultsComponent,
     DropDownComponent,
+    SecondaryButtonComponent,
   ],
   templateUrl: './survey-page.html',
   styleUrl: './survey-page.scss',
@@ -36,8 +38,19 @@ export class SurveyPage {
   questions: any = null;
   answers: any = null;
   counters: number[] = [];
+  channel: any;
 
   responsivOpenCloseToggle = true;
+
+  screenWidth = window.innerWidth;
+
+  /**
+   * Check window width
+   */
+  @HostListener('window:resize')
+  onResize() {
+    this.screenWidth = window.innerWidth;
+  }
 
   /**
    * Loads survey data on start.
@@ -53,9 +66,18 @@ export class SurveyPage {
     this.buildCounters();
     this.cdr.detectChanges();
 
-    this.supabaseService.subscribeAnswers((payload) => {
+    this.channel = this.supabaseService.subscribeAnswers(() => {
       this.loadStatisticsFromDB();
     });
+  }
+
+  /**
+   * Removes the answer sb channel
+   */
+  ngOnDestroy() {
+    if (this.channel) {
+      this.supabaseService.supabase.removeChannel(this.channel);
+    }
   }
 
   toggle() {
