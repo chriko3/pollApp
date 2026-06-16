@@ -20,5 +20,6 @@
     [style.min-width.px]="minwidth"
     [attr.maxlength]="maxLength"
     (keydown)="onKeyDown($event)"
-  >
+    [attr.min]="type === 'date' ? todayString : null"
+  />
 }

@@ -74,7 +74,8 @@ export class SupabaseServieces {
     await this.supabase
       .from('answers')
       .update({ clicked: (data?.clicked ?? 0) + (add ? 1 : -1) })
-      .eq('answer_text', answerText);
+      .eq('answer_text', answerText)
+      .maybeSingle();;
   }
 
   /**

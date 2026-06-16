@@ -37,7 +37,7 @@
       <div class="create-main-survey-settings">
         <div>
           <p>Survey name</p>
-          <div>
+          <div class="space">
             <app-input-field-component
               [value]="newSurvey.SurveyName"
               fieldName="SurveyName"
@@ -76,7 +76,7 @@
             <app-input-field-component
               [textArea]="true"
               [value]="newSurvey.DescribingText"
-              [height]="85"
+              [height]="115"
               [maxLength]="500"
               fieldName="DescribingText"
               (valueChanged)="onInputChange($event)"

@@ -18,6 +18,10 @@ export class InputFieldComponent {
 
   @Output() valueChanged = new EventEmitter<{ field: string; value: string }>();
 
+  get todayString(): string {
+    return new Date().toISOString().split('T')[0];
+  }
+
   /**
    * Sends updated value to parent.
    * Includes field name and value.
@@ -32,7 +36,6 @@ export class InputFieldComponent {
    */
   onKeyDown(event: KeyboardEvent) {
     // if (this.type !== 'number') return;
-
     // if (
     //   event.key === 'Backspace' ||
     //   event.key === 'Delete' ||
@@ -41,14 +44,13 @@ export class InputFieldComponent {
     // ) {
     //   return;
     // }
-
     // if (!/[0-9]/.test(event.key)) {
     //   event.preventDefault();
     // }
   }
 
   onInput(event: Event) {
-  const value = (event.target as HTMLTextAreaElement).value;
-  this.onChange(value);
-}
+    const value = (event.target as HTMLTextAreaElement).value;
+    this.onChange(value);
+  }
 }

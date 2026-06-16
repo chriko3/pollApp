@@ -241,6 +241,7 @@ export class CreatePage {
     setTimeout(() => {
       this.published = false;
       this.cdr.detectChanges();
+      this.goHome();
     }, time);
   }
 

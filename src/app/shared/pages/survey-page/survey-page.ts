@@ -45,6 +45,7 @@ export class SurveyPage {
 
   screenWidth = window.innerWidth;
   pastSurvey = false;
+  shake = false;
 
   /**
    * Check window width
@@ -83,9 +84,18 @@ export class SurveyPage {
     });
 
     if (pastSurveys.includes(id)) {
-      console.log('found');
       this.pastSurvey = true;
       this.cdr.detectChanges();
+    }
+  }
+
+  pastSurveyInfo() {
+    if (this.pastSurvey) {
+      this.shake = false;
+      this.cdr.detectChanges();
+
+      this.shake = true;
+      setTimeout(() => (this.shake = false), 500);
     }
   }
 
@@ -152,6 +162,9 @@ export class SurveyPage {
     return `${day}.${month}.${year}`;
   }
 
+  /**
+   * Set local Storage,
+   */
   completeSurvey() {
     const id = this.route.snapshot.paramMap.get('id');
     let pastSurveys = JSON.parse(localStorage.getItem('pastSurveys') || '[]');
@@ -159,6 +172,8 @@ export class SurveyPage {
       pastSurveys.push(id);
     }
     localStorage.setItem('pastSurveys', JSON.stringify(pastSurveys));
-    console.log(pastSurveys);
+    setTimeout(() => {
+      this.goHome();
+    }, 1000);
   }
 }
