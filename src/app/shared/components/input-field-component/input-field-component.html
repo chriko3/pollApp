@@ -1,10 +1,24 @@
-<textarea
-  [value]="value"
-  [placeholder]="placeholder"
-  spellcheck="false"
-  (input)="onInput($event)"
-  [style.height.px]="height"
-  [style.min-width.px]="minwidth"
-  [attr.maxlength]="maxLength"
-  (keydown)="onKeyDown($event)"
-></textarea>
+@if (textArea) {
+  <textarea
+    [value]="value"
+    [placeholder]="placeholder"
+    spellcheck="false"
+    (input)="onInput($event)"
+    [style.height.px]="height"
+    [style.min-width.px]="minwidth"
+    [attr.maxlength]="maxLength"
+    (keydown)="onKeyDown($event)"
+  ></textarea>
+} @else {
+  <input
+    [value]="value"
+    [placeholder]="placeholder"
+    spellcheck="false"
+    [type]="type"
+    (input)="onInput($event)"
+    [style.height.px]="height"
+    [style.min-width.px]="minwidth"
+    [attr.maxlength]="maxLength"
+    (keydown)="onKeyDown($event)"
+  >
+}

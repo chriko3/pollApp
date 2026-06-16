@@ -5,7 +5,7 @@ import { SurveryStatusComponent } from '../../components/survery-status-componen
 import { GotoServieces } from '../../services/goto-servieces';
 import { QuestionAnswerComponent } from '../../components/question-answer-component/question-answer-component';
 import { AnswearComponent } from '../../components/answear-component/answear-component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SupabaseServieces } from '../../services/supabase-servieces';
 import { ResultsComponent } from '../../components/results-component/results-component';
 import { DropDownComponent } from '../../components/drop-down-component/drop-down-component';
@@ -32,6 +32,7 @@ export class SurveyPage {
     private goto: GotoServieces,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
+    private router: Router,
   ) {}
 
   survey: any = null;
@@ -58,8 +59,17 @@ export class SurveyPage {
    */
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-
+    if (!id) {
+      this.router.navigate(['/']);
+      return;
+    }
     this.survey = await this.supabaseService.getSurveyById(Number(id));
+
+    if (!this.survey) {
+      this.router.navigate(['/']);
+      return;
+    }
+
     this.questions = await this.supabaseService.getQuestionsById(Number(id));
     this.answers = await this.supabaseService.getAnswersById(Number(id));
     this.getEndDate();
@@ -129,8 +139,8 @@ export class SurveyPage {
    * Returns formatted string.
    */
   getEndDate() {
-    const endDay = new Date();
-    endDay.setDate(new Date().getDate() + this.survey.endsDay);
-    return `${endDay.getDate()}.${endDay.getMonth() + 1}.${endDay.getFullYear()}`;
+    const endDay = this.survey.endsDay;
+    const [year, month, day] = endDay.split('-');
+    return `${day}.${month}.${year}`;
   }
 }

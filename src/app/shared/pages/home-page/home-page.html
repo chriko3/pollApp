@@ -429,7 +429,7 @@
           (click)="openPage(item.id)"
           [titel]="item.category"
           [description]="item.headline"
-          [dayText]="'Ends in ' + item.endsDay + (item.endsDay <= 1 ? ' Day' : ' Days')"
+          [dayText]="'Ends in ' + item.daysLeft + (item.daysLeft === 1 ? ' Day' : ' Days')"
         >
         </app-highlight-card-component>
       }
@@ -455,7 +455,7 @@
     <div class="allSurveysList">
       @for (item of surveys; track item.id) {
         @if (
-          ((activeSurveyFilter && item.endsDay >= 0) || (pastSurveyFilter && item.endsDay < 0)) &&
+          ((activeSurveyFilter && item.daysLeft >= 0) || (pastSurveyFilter && item.daysLeft < 0)) &&
           (filter === -1 ||
             (filter === 0 && item.category === 'Team Activities') ||
             (filter === 1 && item.category === 'Health & Wellness') ||
@@ -470,7 +470,7 @@
             [description]="item.headline"
             [dayText]="
               activeSurveyFilter
-                ? 'Ends in ' + item.endsDay + (item.endsDay <= 1 ? ' Day' : ' Days')
+                ? 'Ends in ' + item.daysLeft + (item.daysLeft === 1 ? ' Day' : ' Days')
                 : 'Survey is closed'
             "
           >

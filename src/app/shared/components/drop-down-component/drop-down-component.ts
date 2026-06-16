@@ -34,7 +34,6 @@ export class DropDownComponent {
    */
   changeSortBy() {
     this.sortBy = !this.sortBy;
-    console.log(this.sortBy);
     this.display = !this.sortBy;
   }
 
@@ -46,7 +45,6 @@ export class DropDownComponent {
    */
   selectedCategorie(id: number) {
     this.selectedItem = this.listItems[id];
-    console.log(id);
     this.categorySelected.emit(id);
     this.sortBy = !this.sortBy;
     this.display = !this.sortBy;

@@ -48,14 +48,38 @@ export class HomePage {
    * Sorts and selects top ending soon surveys.
    */
   async ngOnInit() {
-    this.surveys = await this.supabaseService.getSurveys();
+    this.surveys = (await this.supabaseService.getSurveys()).map((s) => ({
+      ...s,
+      daysLeft: this.getDaysLeft(s.endsDay),
+    }));
     this.surveysEndingSoon = this.surveys
-      .filter((s) => s.endsDay >= 0)
-      .sort((a, b) => a.endsDay - b.endsDay)
+      .map((s) => ({
+        ...s,
+        daysLeft: this.getDaysLeft(s.endsDay),
+      }))
+      .filter((s) => s.daysLeft >= 0)
+      .sort((a, b) => a.daysLeft - b.daysLeft)
       .slice(0, 3);
+
     this.cdr.detectChanges();
   }
 
+  parseDate(dateStr: string): Date {
+    const [day, month, year] = dateStr.split('.');
+    return new Date(+year, +month - 1, +day);
+  }
+
+  getDaysLeft(dateStr: string): number {
+    const endDate = new Date(dateStr);
+    const today = new Date();
+
+    return Math.ceil((endDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  }
+
+  formatDate(date: string) {
+    const [y, m, d] = date.split('-');
+    return `${d}.${m}.${y}`;
+  }
   /**
    * Sets selected category filter.
    */

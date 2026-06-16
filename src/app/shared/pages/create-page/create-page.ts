@@ -44,11 +44,12 @@ export class CreatePage {
   filter = -1;
 
   published = false;
+  publishedOrError = '';
 
   newSurvey = {
     SurveyName: '',
     DescribingText: '',
-    SetEndDate: 5,
+    SetEndDate: '',
     Category: '',
   };
 
@@ -87,7 +88,7 @@ export class CreatePage {
     } else if (field === 'DescribingText') {
       this.newSurvey.DescribingText = '';
     } else if (field === 'SetEndDate') {
-      this.newSurvey.SetEndDate = 0;
+      this.newSurvey.SetEndDate = '';
     }
   }
 
@@ -138,19 +139,45 @@ export class CreatePage {
   async publishSurvey() {
     this.getCategory();
     if (this.newSurvey.SurveyName != '' && this.newSurvey.Category != undefined) {
+      if (!this.newSurvey.SetEndDate) {
+        this.newSurvey.SetEndDate = this.getToday();
+      }
+
       for (let i = 0; i < this.questions.length; i++) {
         if (
           this.questions[i].question_headline.trim() === '' ||
           this.questions[i].answers.length === 1 ||
           this.questions[i].answers.some((a) => a.trim() === '')
         ) {
+          this.published = true;
+          this.publishedOrError = 'Not all information has been filled out';
+          this.showOverlay();
+          console.log('error');
+
           return;
         }
       }
       this.published = true;
+      this.publishedOrError = 'Your survey is now published';
       this.showOverlay();
+      console.log(this.newSurvey.SetEndDate);
+
       this.saveToDB();
+    } else {
+      this.published = true;
+      this.publishedOrError = 'Not all information has been filled out';
+      this.showOverlay();
+      console.log('error');
     }
+  }
+
+  getToday(): string {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+
+    return `${yyyy}-${mm}-${dd}`;
   }
 
   async saveToDB() {
@@ -187,15 +214,14 @@ export class CreatePage {
 
   /**
    * Shows overlay after publishing.
-   * Hides it after 4 seconds.
+   * Hides it after 3,5 seconds.
    */
   showOverlay() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => {
       this.published = false;
-      console.log(this.published);
       this.cdr.detectChanges();
-    }, 4000);
+    }, 3500);
   }
 
   /**
@@ -207,7 +233,7 @@ export class CreatePage {
     } else if (event.field === 'DescribingText') {
       this.newSurvey.DescribingText = event.value;
     } else if (event.field === 'SetEndDate') {
-      this.newSurvey.SetEndDate = Number(event.value);
+      this.newSurvey.SetEndDate = event.value;
     }
 
     if (event.field.startsWith('QuestionTitle_')) {

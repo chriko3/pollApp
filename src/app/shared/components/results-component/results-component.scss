@@ -1,45 +1,50 @@
-div {
-    width: 300px;
-    height: 25px;
-    font-family: var(--font-family-Mulish);
-    font-size: var(--font-size-18);
-    font-weight: var(--font-weight-700);
+:host {
+  display: block;
+  width: 300px;
+  font-family: var(--font-family-Mulish);
+}
 
-    >p {
-        color: var(--font-color-dark-purple);
-        margin: 0px;
-        margin-bottom: 20px;
-    }
+.result-title {
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-700);
+  color: var(--font-color-dark-purple);
+  margin-bottom: 5px;
+}
 
-    >div {
-        display: flex;
-        align-items: start;
+.bar-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: -10px;
+}
 
-        >p {
-            font-size: var(--font-size-12);
-            margin-right: 6px;
-        }
+.bar-letter {
+  font-size: var(--font-size-12);
+  margin-right: 6px;
+  font-weight: var(--font-weight-700);
+  color: var(--font-color-dark-purple);
+}
 
-        >div {
-            width: 250px;
-            height: 15px;
-            background-color: rgba(237, 237, 237, 1);
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
-            overflow: hidden;
+.bar-bg {
+  width: 250px;
+  height: 15px;
+  background-color: rgba(237, 237, 237, 1);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
 
-            >div {
-                height: 100%;
-                width: 0%;
-                background-color: var(--font-color-deep-yellow);
-                border-top-right-radius: 20px;
-                border-bottom-right-radius: 20px;
-            }
-        }
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  background-color: var(--font-color-deep-yellow);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: width 0.3s ease;
+}
 
-        >p:last-of-type {
-            margin-left: 6px;
-            color: var(--font-color-deep-yellow);
-        }
-    }
+.bar-percent {
+  margin-left: 6px;
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-700);
+  color: var(--font-color-deep-yellow);
 }

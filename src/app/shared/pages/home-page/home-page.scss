@@ -21,7 +21,7 @@
     font-family: var(--font-family-NerkoOne);
     font-size: var(--font-size-100);
     color: var(--background-color-deep-yellow);
-    line-height: 55px;
+    line-height: 70px;
     margin: 0px;
   }
 }
@@ -204,12 +204,16 @@
     margin-top: 50px;
     p:first-of-type {
       font-size: var(--font-size-62);
+      line-height: 50px;
     }
   }
 
   .infoSection-left {
     order: 2;
     width: 100%;
+    p:first-of-type{
+      line-height: 25px;
+    }
 
     p:last-of-type {
       font-size: var(--font-size-18);
@@ -269,10 +273,13 @@
     flex-direction: column;
     gap: 30px;
   }
+}
 
+@media (max-width: 700px) {
   .allSurveysList {
+    display: grid;
     grid-template-columns: 1fr;
-    width: 100%;
+    justify-items: center;
   }
 }
 

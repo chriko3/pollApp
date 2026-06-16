@@ -1,5 +1,5 @@
 <div class="create wrapper">
-  <app-header-component (click)="goToHome()" logoColor="dark"></app-header-component>
+  <app-header-component logoColor="dark" (click)="goToHome()"></app-header-component>
 
   <section class="create-main">
     <div class="create-main-header">
@@ -28,7 +28,7 @@
 
       <div>
         <p>Create new survey</p>
-        <app-secondary-button-component (click)="goToHome()">Cancle</app-secondary-button-component>
+        <app-secondary-button-component (click)="goToHome()">Cancel</app-secondary-button-component>
       </div>
     </div>
     <div class="create-main-survey">
@@ -54,8 +54,7 @@
                 [value]="newSurvey.SetEndDate.toString()"
                 fieldName="SetEndDate"
                 (valueChanged)="onInputChange($event)"
-                [type]="'number'"
-                [maxLength]="3"
+                [type]="'date'"
               ></app-input-field-component>
 
               <app-delete-button-component
@@ -73,6 +72,7 @@
           <p>Describing text (optional)</p>
           <div class="describing">
             <app-input-field-component
+              [textArea]="true"
               [value]="newSurvey.DescribingText"
               [height]="85"
               [maxLength]="500"
@@ -116,9 +116,8 @@
   </section>
 
   <div class="overlay">
-    <app-overlay-component
-      [published]="published"
-      (close)="published = false"
-    ></app-overlay-component>
+    <app-overlay-component [published]="published" (close)="published = false">{{
+      publishedOrError
+    }}</app-overlay-component>
   </div>
 </div>

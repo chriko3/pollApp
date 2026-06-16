@@ -8,7 +8,8 @@ section {
   padding: 14px 60px 14px 20px;
   display: flex;
   align-items: start;
-    opacity: 0;
+  display: none;
+  opacity: 0;
   transform: translateY(-10px);
 
   div {
@@ -24,10 +25,10 @@ section {
 }
 
 section.show {
+  display: flex;
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (max-width: 1600px) {
-  
 }

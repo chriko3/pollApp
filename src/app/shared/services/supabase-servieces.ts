@@ -68,7 +68,7 @@ export class SupabaseServieces {
     const { data } = await this.supabase
       .from('answers')
       .select('clicked')
-      .eq('answer_text', answerText)
+      .eq('answer_text', String(answerText))
       .single();
 
     await this.supabase
@@ -103,7 +103,7 @@ export class SupabaseServieces {
   async createSurvey(survey: {
     category: string;
     headline: string;
-    endsDay: number;
+    endsDay: string;
     description: string;
   }) {
     const { data, error } = await this.supabase.from('surveys').insert(survey).select().single();

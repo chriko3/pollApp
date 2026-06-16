@@ -14,6 +14,7 @@ export class InputFieldComponent {
   @Input() maxLength = 25;
   @Input() type = 'text';
   @Input() value = '';
+  @Input() textArea = false;
 
   @Output() valueChanged = new EventEmitter<{ field: string; value: string }>();
 
@@ -30,20 +31,20 @@ export class InputFieldComponent {
    * Allows only digits and navigation keys.
    */
   onKeyDown(event: KeyboardEvent) {
-    if (this.type !== 'number') return;
+    // if (this.type !== 'number') return;
 
-    if (
-      event.key === 'Backspace' ||
-      event.key === 'Delete' ||
-      event.key === 'Tab' ||
-      event.key.startsWith('Arrow')
-    ) {
-      return;
-    }
+    // if (
+    //   event.key === 'Backspace' ||
+    //   event.key === 'Delete' ||
+    //   event.key === 'Tab' ||
+    //   event.key.startsWith('Arrow')
+    // ) {
+    //   return;
+    // }
 
-    if (!/[0-9]/.test(event.key)) {
-      event.preventDefault();
-    }
+    // if (!/[0-9]/.test(event.key)) {
+    //   event.preventDefault();
+    // }
   }
 
   onInput(event: Event) {
