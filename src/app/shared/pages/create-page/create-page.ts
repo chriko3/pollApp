@@ -138,36 +138,54 @@ export class CreatePage {
    */
   async publishSurvey() {
     this.getCategory();
+
+    let error = '';
+
     if (this.newSurvey.SurveyName != '' && this.newSurvey.Category != undefined) {
       if (!this.newSurvey.SetEndDate) {
         this.newSurvey.SetEndDate = this.getToday();
       }
 
       for (let i = 0; i < this.questions.length; i++) {
-        if (
-          this.questions[i].question_headline.trim() === '' ||
-          this.questions[i].answers.length === 1 ||
-          this.questions[i].answers.some((a) => a.trim() === '')
-        ) {
-          this.published = true;
-          this.publishedOrError = 'Not all information has been filled out';
-          this.showOverlay();
-          console.log('error');
+        if (this.questions[i].question_headline.trim() === '') {
+          error += `Question ${i + 1}: Headline missing. `;
+        }
 
+        const filledAnswers = this.questions[i].answers.filter((a) => a.trim() !== '');
+
+        if (filledAnswers.length < 2) {
+          error += `Question ${i + 1}: At least 2 answers required. `;
+        }
+
+        if (this.questions[i].answers.some((a) => a.trim() === '')) {
+          error += `Question ${i + 1}: Empty answer found. `;
+        }
+
+        if (error !== '') {
+          this.published = true;
+          this.publishedOrError = error;
+          this.showOverlay();
           return;
         }
       }
+
       this.published = true;
       this.publishedOrError = 'Your survey is now published';
       this.showOverlay();
-      console.log(this.newSurvey.SetEndDate);
 
-      this.saveToDB();
+      // this.saveToDB();
     } else {
+      if (this.newSurvey.SurveyName == '') {
+        error += 'Survey name missing. ';
+      }
+
+      if (this.newSurvey.Category == undefined) {
+        error += 'Category missing. ';
+      }
+
       this.published = true;
-      this.publishedOrError = 'Not all information has been filled out';
+      this.publishedOrError = error;
       this.showOverlay();
-      console.log('error');
     }
   }
 
@@ -214,14 +232,16 @@ export class CreatePage {
 
   /**
    * Shows overlay after publishing.
-   * Hides it after 3,5 seconds.
+   * Hides it after time seconds.
    */
   showOverlay() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    let time = 5000;
+    this.cdr.detectChanges();
+    // window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => {
       this.published = false;
       this.cdr.detectChanges();
-    }, 3500);
+    }, time);
   }
 
   /**

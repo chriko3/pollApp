@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, Renderer2 } from '@angular/core';
 import { PrimaryButtonComponent } from '../../components/primary-button-component/primary-button-component';
 import { HeaderComponent } from '../../components/header-component/header-component';
 import { HighlightCardComponent } from '../../components/highlight-card-component/highlight-card-component';
@@ -41,6 +41,7 @@ export class HomePage {
     private router: Router,
     private goto: GotoServieces,
     private cdr: ChangeDetectorRef,
+    private renderer: Renderer2,
   ) {}
 
   /**
@@ -48,6 +49,7 @@ export class HomePage {
    * Sorts and selects top ending soon surveys.
    */
   async ngOnInit() {
+    this.setBodyClass('home');
     this.surveys = (await this.supabaseService.getSurveys()).map((s) => ({
       ...s,
       daysLeft: this.getDaysLeft(s.endsDay),
@@ -62,6 +64,19 @@ export class HomePage {
       .slice(0, 3);
 
     this.cdr.detectChanges();
+  }
+
+  
+  ngOnDestroy() {
+    this.removeBodyClass('home');
+  }
+
+  private setBodyClass(className: string) {
+    this.renderer.addClass(document.body, className);
+  }
+
+  private removeBodyClass(className: string) {
+    this.renderer.removeClass(document.body, className);
   }
 
   parseDate(dateStr: string): Date {

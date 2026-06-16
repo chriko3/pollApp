@@ -4,6 +4,10 @@ body {
   margin: 0;
 }
 
+body.home {
+  background-color: var(--background-color);
+}
+
 * {
   color: var(--font-color-dark-purple);
   -webkit-tap-highlight-color: transparent;
@@ -40,7 +44,6 @@ input::selection {
   font-family: 'Nokora';
   // src: url('/angular-projects/pollapp/assets/fonts/Nokora.ttf') format('truetype');
   src: url('/assets/fonts/Nokora.ttf') format('truetype');
-
 }
 
 @font-face {
