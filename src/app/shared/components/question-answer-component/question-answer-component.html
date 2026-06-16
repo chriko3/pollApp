@@ -8,10 +8,13 @@
       <div>
         <app-checkbox-component
           [answer]="item.text"
+          [disabled]="disabled"
           [checkedCheckbox]="!questionMoreAnswers && selectedAnswer === item.text"
-         (checkedChange)="!questionMoreAnswers ? onSingleAnswerSelected($event, item.text) : null"
+          (checkedChange)="!questionMoreAnswers ? onSingleAnswerSelected($event, item.text) : null"
         >
-          <p><span>{{ getLetterFromNumber(i) }}. </span>{{ item.text }}</p>
+          <p>
+            <span>{{ getLetterFromNumber(i) }}. </span>{{ item.text }}
+          </p>
         </app-checkbox-component>
       </div>
     }

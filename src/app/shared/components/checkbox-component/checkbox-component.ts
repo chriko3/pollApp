@@ -12,6 +12,8 @@ export class CheckboxComponent {
   @Input() answer: string = '';
   @Input() borderColor = '#000000';
   @Input() checkedCheckbox = false;
+  @Input() disabled = false;
+
   @Output() checkedChange = new EventEmitter<boolean>();
 
   answers: any = null;

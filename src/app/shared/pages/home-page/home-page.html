@@ -455,7 +455,8 @@
     <div class="allSurveysList">
       @for (item of surveys; track item.id) {
         @if (
-          ((activeSurveyFilter && item.daysLeft >= 0) || (pastSurveyFilter && item.daysLeft < 0)) &&
+          ((activeSurveyFilter && item.daysLeft >= 0 && !item.isParticipated) ||
+            (pastSurveyFilter && (item.daysLeft < 0 || item.isParticipated))) &&
           (filter === -1 ||
             (filter === 0 && item.category === 'Team Activities') ||
             (filter === 1 && item.category === 'Health & Wellness') ||
@@ -465,7 +466,7 @@
             (filter === 5 && item.category === 'Technology & Innovation'))
         ) {
           <app-survey-view-component
-            (click)="activeSurveyFilter && openPage(item.id)"
+            (click)="openPage(item.id)"
             [titel]="item.category"
             [description]="item.headline"
             [dayText]="

@@ -13,6 +13,7 @@ export class QuestionAnswerComponent {
   @Input() questionTitle = '';
   @Input() questionMoreAnswers = true;
   @Input() questions: { text: string }[] = [];
+  @Input() disabled = false;
   selectedAnswer: string | null = null;
 
   /**

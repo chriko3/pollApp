@@ -12,8 +12,8 @@
         <div class="survey-answers">
           <div class="survey-answer-info">
             <div>
-              <app-survery-status-component [color]="'deep'"
-                >Published</app-survery-status-component
+              <app-survery-status-component [color]="'deep'">
+                {{ pastSurvey ? 'Done' : 'Published' }}</app-survery-status-component
               >
               <app-secondary-button-component
                 [width]="40"
@@ -46,6 +46,7 @@
           <div class="survey-answer-list">
             @for (item of questions; track item; let i = $index) {
               <app-question-answer-component
+                [disabled]="pastSurvey"
                 [questionNumber]="i + 1"
                 [questionTitle]="item.question_headline"
                 [questionMoreAnswers]="item.multiple_choice"
@@ -56,7 +57,13 @@
                 "
               ></app-question-answer-component>
             }
+            <div class="completeSurvey" [class.display-none]="pastSurvey">
+              <app-primary-button-component [icon]="'check'" (click)="completeSurvey()"
+                >Complete Survey</app-primary-button-component
+              >
+            </div>
           </div>
+          <div></div>
         </div>
       </section>
 

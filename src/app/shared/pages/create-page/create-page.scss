@@ -24,7 +24,6 @@
   flex-direction: column;
   margin-bottom: 30px;
 
-
   section {
     display: flex;
     align-items: center;
@@ -261,7 +260,14 @@ app-input-field-component {
     right: 0px;
   }
 
-  .c-header{
+  .c-header {
     padding: 10px;
+  }
+}
+
+@media (max-width: 370px) {
+  .overlay {
+    scale: 0.8;
+    right: -20px;
   }
 }

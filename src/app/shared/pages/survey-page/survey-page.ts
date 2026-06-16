@@ -44,6 +44,7 @@ export class SurveyPage {
   responsivOpenCloseToggle = true;
 
   screenWidth = window.innerWidth;
+  pastSurvey = false;
 
   /**
    * Check window width
@@ -59,6 +60,7 @@ export class SurveyPage {
    */
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+    const pastSurveys: string[] = JSON.parse(localStorage.getItem('pastSurveys') || '[]');
     if (!id) {
       this.router.navigate(['/']);
       return;
@@ -79,6 +81,12 @@ export class SurveyPage {
     this.channel = this.supabaseService.subscribeAnswers(() => {
       this.loadStatisticsFromDB();
     });
+
+    if (pastSurveys.includes(id)) {
+      console.log('found');
+      this.pastSurvey = true;
+      this.cdr.detectChanges();
+    }
   }
 
   /**
@@ -142,5 +150,15 @@ export class SurveyPage {
     const endDay = this.survey.endsDay;
     const [year, month, day] = endDay.split('-');
     return `${day}.${month}.${year}`;
+  }
+
+  completeSurvey() {
+    const id = this.route.snapshot.paramMap.get('id');
+    let pastSurveys = JSON.parse(localStorage.getItem('pastSurveys') || '[]');
+    if (!pastSurveys.includes(id)) {
+      pastSurveys.push(id);
+    }
+    localStorage.setItem('pastSurveys', JSON.stringify(pastSurveys));
+    console.log(pastSurveys);
   }
 }

@@ -50,9 +50,11 @@ export class HomePage {
    */
   async ngOnInit() {
     this.setBodyClass('home');
+    const pastSurveys: string[] = JSON.parse(localStorage.getItem('pastSurveys') || '[]');
     this.surveys = (await this.supabaseService.getSurveys()).map((s) => ({
       ...s,
       daysLeft: this.getDaysLeft(s.endsDay),
+      isParticipated: pastSurveys.includes(String(s.id)),
     }));
     this.surveysEndingSoon = this.surveys
       .map((s) => ({
@@ -62,20 +64,18 @@ export class HomePage {
       .filter((s) => s.daysLeft >= 0)
       .sort((a, b) => a.daysLeft - b.daysLeft)
       .slice(0, 3);
-
     this.cdr.detectChanges();
   }
 
-  
   ngOnDestroy() {
     this.removeBodyClass('home');
   }
 
-  private setBodyClass(className: string) {
+  setBodyClass(className: string) {
     this.renderer.addClass(document.body, className);
   }
 
-  private removeBodyClass(className: string) {
+  removeBodyClass(className: string) {
     this.renderer.removeClass(document.body, className);
   }
 
