@@ -64,18 +64,17 @@ export class SupabaseServieces {
    * Updates clicked count for an answer.
    * Adds or removes one click.
    */
-  async updatedClickedAnswerInDB(answerText: string, add: boolean) {
+  async updatedClickedAnswerInDB(answerId: number, add: boolean) {
     const { data } = await this.supabase
       .from('answers')
       .select('clicked')
-      .eq('answer_text', String(answerText))
+      .eq('id', answerId)
       .single();
 
     await this.supabase
       .from('answers')
       .update({ clicked: (data?.clicked ?? 0) + (add ? 1 : -1) })
-      .eq('answer_text', answerText)
-      .maybeSingle();;
+      .eq('id', answerId);
   }
 
   /**

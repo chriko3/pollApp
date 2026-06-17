@@ -12,9 +12,9 @@ export class QuestionAnswerComponent {
   @Input() questionNumber = 1;
   @Input() questionTitle = '';
   @Input() questionMoreAnswers = true;
-  @Input() questions: { text: string }[] = [];
+  @Input() questions: { text: string; id: number }[] = [];
   @Input() disabled = false;
-  selectedAnswer: string | null = null;
+  selectedAnswer: number | null = null;
 
   /**
    * Creates the component.
@@ -35,14 +35,14 @@ export class QuestionAnswerComponent {
    * Removes previous selection in database.
    * Sets new selected answer.
    */
-  onSingleAnswerSelected(checked: boolean, answerText: string) {
-    if (!checked && this.selectedAnswer === answerText) {
+  onSingleAnswerSelected(checked: boolean, answerId: number) {
+    if (!checked && this.selectedAnswer === answerId) {
       this.selectedAnswer = null;
     } else if (checked) {
       if (this.selectedAnswer !== null) {
         this.supabaseService.updatedClickedAnswerInDB(this.selectedAnswer, false);
       }
-      this.selectedAnswer = answerText;
+      this.selectedAnswer = answerId;
     }
   }
 }

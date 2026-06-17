@@ -7,10 +7,10 @@
     @for (item of questions; track $index; let i = $index) {
       <div>
         <app-checkbox-component
-          [answer]="item.text"
+          [answer]="item"
           [disabled]="disabled"
-          [checkedCheckbox]="!questionMoreAnswers && selectedAnswer === item.text"
-          (checkedChange)="!questionMoreAnswers ? onSingleAnswerSelected($event, item.text) : null"
+          [checkedCheckbox]="!questionMoreAnswers && selectedAnswer === item.id"
+          (checkedChange)="onSingleAnswerSelected($event, item.id)"
         >
           <p>
             <span>{{ getLetterFromNumber(i) }}. </span>{{ item.text }}

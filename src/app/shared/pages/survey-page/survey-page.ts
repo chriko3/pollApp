@@ -60,6 +60,7 @@ export class SurveyPage {
    * Builds statistics and subscribes to updates.
    */
   async ngOnInit() {
+    window.scrollTo(0, 0);
     const id = this.route.snapshot.paramMap.get('id');
     const pastSurveys: string[] = JSON.parse(localStorage.getItem('pastSurveys') || '[]');
     if (!id) {

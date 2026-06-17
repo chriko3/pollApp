@@ -49,6 +49,7 @@ export class HomePage {
    * Sorts and selects top ending soon surveys.
    */
   async ngOnInit() {
+    window.scrollTo(0, 0);
     this.setBodyClass('home');
     const pastSurveys: string[] = JSON.parse(localStorage.getItem('pastSurveys') || '[]');
     this.surveys = (await this.supabaseService.getSurveys()).map((s) => ({

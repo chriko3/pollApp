@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './checkbox-component.scss',
 })
 export class CheckboxComponent {
-  @Input() answer: string = '';
+  @Input() answer: { text: string; id: number } = { text: '', id: 0 };
   @Input() borderColor = '#000000';
   @Input() checkedCheckbox = false;
   @Input() disabled = false;
@@ -43,15 +43,9 @@ export class CheckboxComponent {
    * Emits the new value.
    * Updates database for matching answer.
    */
-  changeValueOnDB(answer: string) {
+  changeValueOnDB(answer: { text: string; id: number }) {
     this.checkedCheckbox = !this.checkedCheckbox;
     this.checkedChange.emit(this.checkedCheckbox);
-
-    for (let index = 0; index < this.answers.length; index++) {
-      if (answer === this.answers[index].answer_text) {
-        this.supabaseService.updatedClickedAnswerInDB(answer, this.checkedCheckbox);
-        break;
-      }
-    }
+    this.supabaseService.updatedClickedAnswerInDB(answer.id, this.checkedCheckbox);
   }
 }

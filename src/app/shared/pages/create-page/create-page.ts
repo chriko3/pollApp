@@ -63,6 +63,8 @@ export class CreatePage {
 
   screenWidth = window.innerWidth;
 
+  time = 5000;
+
   /**
    * Check window width
    */
@@ -76,6 +78,10 @@ export class CreatePage {
    */
   goHome() {
     this.goto.goToHome();
+  }
+
+  ngOnInit() {
+    window.scrollTo(0, 0);
   }
 
   /**
@@ -142,8 +148,12 @@ export class CreatePage {
     let error = '';
 
     if (this.newSurvey.SurveyName != '' && this.newSurvey.Category != undefined) {
-      if (!this.newSurvey.SetEndDate) {
-        this.newSurvey.SetEndDate = this.getToday();
+      if (!this.newSurvey.SetEndDate || this.newSurvey.SetEndDate < this.getToday()) {
+        error += 'End date must be today or in the future. ';
+        this.published = true;
+        this.publishedOrError = error;
+        this.showOverlay();
+        return;
       }
 
       for (let i = 0; i < this.questions.length; i++) {
@@ -173,7 +183,7 @@ export class CreatePage {
       this.publishedOrError = 'Your survey is now published';
       this.showOverlay();
 
-      // this.saveToDB();
+      this.saveToDB();
     } else {
       if (this.newSurvey.SurveyName == '') {
         error += 'Survey name missing. ';
@@ -235,14 +245,13 @@ export class CreatePage {
    * Hides it after time seconds.
    */
   showOverlay() {
-    let time = 5000;
+    this.time = 5000;
     this.cdr.detectChanges();
     // window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => {
       this.published = false;
       this.cdr.detectChanges();
-      this.goHome();
-    }, time);
+    }, this.time);
   }
 
   /**

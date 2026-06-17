@@ -3,7 +3,7 @@
     type="checkbox"
     [style.border-color]="borderColor"
     [checked]="checkedCheckbox"
-    (click)="changeValueOnDB(answer)"
+    (change)="changeValueOnDB(answer)"
     [disabled]="disabled"
   />
   <p><ng-content></ng-content></p>

@@ -53,7 +53,7 @@
                 [questions]="
                   answers
                     .filter((a) => a.question_id === item.id)
-                    .map((a) => ({ text: a.answer_text }))
+                    .map((a) => ({ text: a.answer_text, id: a.id }))
                 "
               ></app-question-answer-component>
             }
